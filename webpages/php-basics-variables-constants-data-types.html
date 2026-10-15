@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP BASICS, VARIABLES, CONSTANTS AND DATA TYPES - BCA 4205/25 Daisy Dhiman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="simple-nav">
+        <div class="nav-logo"><a href="../index.html">Backend Web Development</a></div>
+    </nav>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">&larr; Back to Home</a>
+
+        <div class="questions-page">
+            <h1>PHP BASICS, VARIABLES, CONSTANTS AND DATA TYPES</h1>
+
+            <div class="question-index">
+                <h2>Questions List</h2>
+                <ul>
+                    <li><a href="#q1">1. Write a PHP program to display Hello, World!.</a></li>
+                    <li><a href="#q2">2. Display two lines using echo.</a></li>
+                    <li><a href="#q3">3. Declare a variable and display its value.</a></li>
+                    <li><a href="#q4">4. Store a name and age, then print both in one sentence.</a></li>
+                    <li><a href="#q5">5. Show the difference between single-quoted and double-quoted strings.</a></li>
+                    <li><a href="#q6">6. Define a constant using define().</a></li>
+                    <li><a href="#q7">7. Define a constant using const.</a></li>
+                    <li><a href="#q8">8. Display the data type of a value.</a></li>
+                    <li><a href="#q9">9. Check whether a variable is an integer.</a></li>
+                    <li><a href="#q10">10. Convert a numeric string to an integer.</a></li>
+                    <li><a href="#q11">11. Join two strings using the concatenation operator.</a></li>
+                    <li><a href="#q12">12. Check whether a variable exists and is not null using isset().</a></li>
+                </ul>
+            </div>
+
+            <div class="question-section" id="q1">
+                <h3>1. Write a PHP program to display Hello, World!.</h3>
+                <div class="answer-box">
+                    <h4>Answer 1:</h4>
+                    <pre><code>&lt;?php
+echo &quot;Hello, World!&quot;;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 1:</h4>
+                    <pre><code>Hello, World!</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q2">
+                <h3>2. Display two lines using echo.</h3>
+                <div class="answer-box">
+                    <h4>Answer 2:</h4>
+                    <pre><code>&lt;?php
+echo &quot;Backend Web Development&lt;br&gt;&quot;;
+echo &quot;PHP basics&quot;;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 2:</h4>
+                    <pre><code>Backend Web Development
+PHP basics</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>In a browser, &lt;br&gt; creates the line break.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q3">
+                <h3>3. Declare a variable and display its value.</h3>
+                <div class="answer-box">
+                    <h4>Answer 3:</h4>
+                    <pre><code>&lt;?php
+$name = &quot;Asha&quot;;
+echo $name;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 3:</h4>
+                    <pre><code>Asha</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q4">
+                <h3>4. Store a name and age, then print both in one sentence.</h3>
+                <div class="answer-box">
+                    <h4>Answer 4:</h4>
+                    <pre><code>&lt;?php
+$name = &quot;Ravi&quot;;
+$age = 20;
+echo &quot;$name is $age years old.&quot;;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 4:</h4>
+                    <pre><code>Ravi is 20 years old.</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q5">
+                <h3>5. Show the difference between single-quoted and double-quoted strings.</h3>
+                <div class="answer-box">
+                    <h4>Answer 5:</h4>
+                    <pre><code>&lt;?php
+$name = &quot;Mira&quot;;
+echo &#x27;Hello $name&#x27;;
+echo &quot;\n&quot;;
+echo &quot;Hello $name&quot;;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 5:</h4>
+                    <pre><code>Hello $name
+Hello Mira</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Variable interpolation works inside double-quoted strings, not ordinary single-quoted strings.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q6">
+                <h3>6. Define a constant using define().</h3>
+                <div class="answer-box">
+                    <h4>Answer 6:</h4>
+                    <pre><code>&lt;?php
+define(&quot;COLLEGE&quot;, &quot;ABC College&quot;);
+echo COLLEGE;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 6:</h4>
+                    <pre><code>ABC College</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q7">
+                <h3>7. Define a constant using const.</h3>
+                <div class="answer-box">
+                    <h4>Answer 7:</h4>
+                    <pre><code>&lt;?php
+const TAX_RATE = 0.18;
+echo TAX_RATE;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 7:</h4>
+                    <pre><code>0.18</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q8">
+                <h3>8. Display the data type of a value.</h3>
+                <div class="answer-box">
+                    <h4>Answer 8:</h4>
+                    <pre><code>&lt;?php
+$price = 49.5;
+echo gettype($price);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 8:</h4>
+                    <pre><code>double</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q9">
+                <h3>9. Check whether a variable is an integer.</h3>
+                <div class="answer-box">
+                    <h4>Answer 9:</h4>
+                    <pre><code>&lt;?php
+$count = 12;
+var_dump(is_int($count));
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 9:</h4>
+                    <pre><code>bool(true)</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q10">
+                <h3>10. Convert a numeric string to an integer.</h3>
+                <div class="answer-box">
+                    <h4>Answer 10:</h4>
+                    <pre><code>&lt;?php
+$value = &quot;25&quot;;
+$number = (int) $value;
+echo $number + 5;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 10:</h4>
+                    <pre><code>30</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q11">
+                <h3>11. Join two strings using the concatenation operator.</h3>
+                <div class="answer-box">
+                    <h4>Answer 11:</h4>
+                    <pre><code>&lt;?php
+$first = &quot;Web&quot;;
+$second = &quot;Development&quot;;
+echo $first . &quot; &quot; . $second;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 11:</h4>
+                    <pre><code>Web Development</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q12">
+                <h3>12. Check whether a variable exists and is not null using isset().</h3>
+                <div class="answer-box">
+                    <h4>Answer 12:</h4>
+                    <pre><code>&lt;?php
+$name = &quot;Asha&quot;;
+$city = null;
+var_dump(isset($name));
+var_dump(isset($city));
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 12:</h4>
+                    <pre><code>bool(true)
+bool(false)</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>DAISY DHIMAN BCA 4205/25 SEC A</p>
+    </footer>
+</body>
+</html>

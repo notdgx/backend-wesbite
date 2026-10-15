@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYSQL DATABASE CONNECTIVITY WITH PHP USING XAMPP - BCA 4205/25 Daisy Dhiman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="simple-nav">
+        <div class="nav-logo"><a href="../index.html">Backend Web Development</a></div>
+    </nav>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">&larr; Back to Home</a>
+
+        <div class="questions-page">
+            <h1>MYSQL DATABASE CONNECTIVITY WITH PHP USING XAMPP</h1>
+
+            <div class="question-index">
+                <h2>Questions List</h2>
+                <ul>
+                    <li><a href="#q1">1. Connect PHP to a MySQL database using MySQLi.</a></li>
+                    <li><a href="#q2">2. Create a database from PHP.</a></li>
+                    <li><a href="#q3">3. Create a students table.</a></li>
+                    <li><a href="#q4">4. Insert a student using a prepared statement.</a></li>
+                    <li><a href="#q5">5. Retrieve and display all students.</a></li>
+                    <li><a href="#q6">6. Retrieve a student by ID using a prepared statement.</a></li>
+                    <li><a href="#q7">7. Update a student&#x27;s email address.</a></li>
+                    <li><a href="#q8">8. Delete a student by ID using a prepared statement.</a></li>
+                    <li><a href="#q9">9. Count the number of student records.</a></li>
+                    <li><a href="#q10">10. Search for students whose names match a keyword.</a></li>
+                    <li><a href="#q11">11. Register a user by storing a password hash.</a></li>
+                    <li><a href="#q12">12. Check a login password using password_verify().</a></li>
+                </ul>
+            </div>
+
+            <div class="question-section" id="q1">
+                <h3>1. Connect PHP to a MySQL database using MySQLi.</h3>
+                <div class="answer-box">
+                    <h4>Answer 1:</h4>
+                    <pre><code>&lt;?php
+$conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;college&quot;);
+if ($conn-&gt;connect_error) {
+    die(&quot;Connection failed&quot;);
+}
+echo &quot;Connected successfully&quot;;
+$conn-&gt;close();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 1:</h4>
+                    <pre><code>Connected successfully</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>XAMPP default installations commonly use localhost and root with an empty password, unless you changed these settings. Create the college database first in phpMyAdmin.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q2">
+                <h3>2. Create a database from PHP.</h3>
+                <div class="answer-box">
+                    <h4>Answer 2:</h4>
+                    <pre><code>&lt;?php
+$conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;);
+if ($conn-&gt;connect_error) die(&quot;Connection failed&quot;);
+$sql = &quot;CREATE DATABASE IF NOT EXISTS college&quot;;
+if ($conn-&gt;query($sql)) {
+    echo &quot;Database ready&quot;;
+} else {
+    echo &quot;Database error&quot;;
+}
+$conn-&gt;close();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 2:</h4>
+                    <pre><code>Database ready</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Run with MySQL/MariaDB started in the XAMPP Control Panel.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q3">
+                <h3>3. Create a students table.</h3>
+                <div class="answer-box">
+                    <h4>Answer 3:</h4>
+                    <pre><code>&lt;?php
+$conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;college&quot;);
+$sql = &quot;CREATE TABLE IF NOT EXISTS students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL
+)&quot;;
+if ($conn-&gt;query($sql)) echo &quot;Table ready&quot;;
+else echo &quot;Table creation failed&quot;;
+$conn-&gt;close();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 3:</h4>
+                    <pre><code>Table ready</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Requires the college database to exist.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q4">
+                <h3>4. Insert a student using a prepared statement.</h3>
+                <div class="answer-box">
+                    <h4>Answer 4:</h4>
+                    <pre><code>&lt;?php
+$conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;college&quot;);
+$stmt = $conn-&gt;prepare(&quot;INSERT INTO students (name, email) VALUES (?, ?)&quot;);
+$name = &quot;Asha&quot;;
+$email = &quot;asha@example.com&quot;;
+$stmt-&gt;bind_param(&quot;ss&quot;, $name, $email);
+if ($stmt-&gt;execute()) echo &quot;Student inserted&quot;;
+else echo &quot;Insert failed&quot;;
+$stmt-&gt;close();
+$conn-&gt;close();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 4:</h4>
+                    <pre><code>Student inserted</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Requires the students table. Running repeatedly inserts another row; use a unique constraint if duplicate emails must be prevented.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q5">
+                <h3>5. Retrieve and display all students.</h3>
+                <div class="answer-box">
+                    <h4>Answer 5:</h4>
+                    <pre><code>&lt;?php
+$conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;college&quot;);
+$result = $conn-&gt;query(&quot;SELECT id, name, email FROM students&quot;);
+while ($row = $result-&gt;fetch_assoc()) {
+    echo $row[&quot;id&quot;] . &quot; - &quot; . htmlspecialchars($row[&quot;name&quot;], ENT_QUOTES, &quot;UTF-8&quot;) . &quot; - &quot;;
+    echo htmlspecialchars($row[&quot;email&quot;], ENT_QUOTES, &quot;UTF-8&quot;) . &quot;&lt;br&gt;&quot;;
+}
+$conn-&gt;close();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 5:</h4>
+                    <pre><code>Example row: 1 - Asha - asha@example.com</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Output depends on the records currently in the students table; HTML line breaks are shown as separate lines in the browser.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q6">
+                <h3>6. Retrieve a student by ID using a prepared statement.</h3>
+                <div class="answer-box">
+                    <h4>Answer 6:</h4>
+                    <pre><code>&lt;?php
+$conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;college&quot;);
+$id = 1;
+$stmt = $conn-&gt;prepare(&quot;SELECT name, email FROM students WHERE id = ?&quot;);
+$stmt-&gt;bind_param(&quot;i&quot;, $id);
+$stmt-&gt;execute();
+$result = $stmt-&gt;get_result();
+if ($row = $result-&gt;fetch_assoc()) {
+    echo $row[&quot;name&quot;] . &quot; - &quot; . $row[&quot;email&quot;];
+} else {
+    echo &quot;Student not found&quot;;
+}
+$stmt-&gt;close();
+$conn-&gt;close();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 6:</h4>
+                    <pre><code>If ID 1 is Asha: Asha - asha@example.com</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Requires a PHP build with MySQLi&#x27;s mysqlnd driver, as included in typical XAMPP packages.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q7">
+                <h3>7. Update a student&#x27;s email address.</h3>
+                <div class="answer-box">
+                    <h4>Answer 7:</h4>
+                    <pre><code>&lt;?php
+$conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;college&quot;);
+$id = 1;
+$email = &quot;asha.new@example.com&quot;;
+$stmt = $conn-&gt;prepare(&quot;UPDATE students SET email = ? WHERE id = ?&quot;);
+$stmt-&gt;bind_param(&quot;si&quot;, $email, $id);
+$stmt-&gt;execute();
+echo ($stmt-&gt;affected_rows &gt;= 0) ? &quot;Update query executed&quot; : &quot;Update failed&quot;;
+$stmt-&gt;close();
+$conn-&gt;close();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 7:</h4>
+                    <pre><code>Update query executed</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>affected_rows may be 0 when the ID is absent or the value was already the same; inspect execute() for query success.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q8">
+                <h3>8. Delete a student by ID using a prepared statement.</h3>
+                <div class="answer-box">
+                    <h4>Answer 8:</h4>
+                    <pre><code>&lt;?php
+$conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;college&quot;);
+$id = 1;
+$stmt = $conn-&gt;prepare(&quot;DELETE FROM students WHERE id = ?&quot;);
+$stmt-&gt;bind_param(&quot;i&quot;, $id);
+if ($stmt-&gt;execute()) echo &quot;Delete query executed&quot;;
+else echo &quot;Delete failed&quot;;
+$stmt-&gt;close();
+$conn-&gt;close();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 8:</h4>
+                    <pre><code>Delete query executed</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>This removes the row with ID 1 if it exists. Test destructive queries on sample data.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q9">
+                <h3>9. Count the number of student records.</h3>
+                <div class="answer-box">
+                    <h4>Answer 9:</h4>
+                    <pre><code>&lt;?php
+$conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;college&quot;);
+$result = $conn-&gt;query(&quot;SELECT COUNT(*) AS total FROM students&quot;);
+$row = $result-&gt;fetch_assoc();
+echo $row[&quot;total&quot;];
+$conn-&gt;close();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 9:</h4>
+                    <pre><code>2</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>The example output assumes there are exactly two rows in the students table.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q10">
+                <h3>10. Search for students whose names match a keyword.</h3>
+                <div class="answer-box">
+                    <h4>Answer 10:</h4>
+                    <pre><code>&lt;?php
+$conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;college&quot;);
+$keyword = &quot;%Ash%&quot;;
+$stmt = $conn-&gt;prepare(&quot;SELECT name FROM students WHERE name LIKE ?&quot;);
+$stmt-&gt;bind_param(&quot;s&quot;, $keyword);
+$stmt-&gt;execute();
+$result = $stmt-&gt;get_result();
+while ($row = $result-&gt;fetch_assoc()) {
+    echo htmlspecialchars($row[&quot;name&quot;], ENT_QUOTES, &quot;UTF-8&quot;) . &quot; &quot;;
+}
+$stmt-&gt;close();
+$conn-&gt;close();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 10:</h4>
+                    <pre><code>Example matching result: Asha</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Results depend on the data in the table. Prepared statements help prevent SQL injection.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q11">
+                <h3>11. Register a user by storing a password hash.</h3>
+                <div class="answer-box">
+                    <h4>Answer 11:</h4>
+                    <pre><code>&lt;?php
+$conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;college&quot;);
+$conn-&gt;query(&quot;CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL
+)&quot;);
+$username = &quot;learner1&quot;;
+$password = &quot;examplePassword123&quot;;
+$hash = password_hash($password, PASSWORD_DEFAULT);
+$stmt = $conn-&gt;prepare(&quot;INSERT INTO users (username, password_hash) VALUES (?, ?)&quot;);
+$stmt-&gt;bind_param(&quot;ss&quot;, $username, $hash);
+if ($stmt-&gt;execute()) echo &quot;User registered&quot;;
+else echo &quot;Registration failed&quot;;
+$stmt-&gt;close();
+$conn-&gt;close();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 11:</h4>
+                    <pre><code>User registered</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Run once per username because username is UNIQUE. Never store plain-text passwords.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q12">
+                <h3>12. Check a login password using password_verify().</h3>
+                <div class="answer-box">
+                    <h4>Answer 12:</h4>
+                    <pre><code>&lt;?php
+$conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;college&quot;);
+$username = &quot;learner1&quot;;
+$password = &quot;examplePassword123&quot;;
+$stmt = $conn-&gt;prepare(&quot;SELECT password_hash FROM users WHERE username = ?&quot;);
+$stmt-&gt;bind_param(&quot;s&quot;, $username);
+$stmt-&gt;execute();
+$result = $stmt-&gt;get_result();
+$row = $result-&gt;fetch_assoc();
+if ($row &amp;&amp; password_verify($password, $row[&quot;password_hash&quot;])) {
+    echo &quot;Login successful&quot;;
+} else {
+    echo &quot;Invalid username or password&quot;;
+}
+$stmt-&gt;close();
+$conn-&gt;close();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 12:</h4>
+                    <pre><code>Login successful</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Run after registering learner1 with the same password. Real applications should also use sessions, HTTPS, rate limits, and generic login errors.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>DAISY DHIMAN BCA 4205/25 SEC A</p>
+    </footer>
+</body>
+</html>

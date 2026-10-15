@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML FORMS, GET, POST AND SERVER-SIDE VALIDATION - BCA 4205/25 Daisy Dhiman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="simple-nav">
+        <div class="nav-logo"><a href="../index.html">Backend Web Development</a></div>
+    </nav>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">&larr; Back to Home</a>
+
+        <div class="questions-page">
+            <h1>HTML FORMS, GET, POST AND SERVER-SIDE VALIDATION</h1>
+
+            <div class="question-index">
+                <h2>Questions List</h2>
+                <ul>
+                    <li><a href="#q1">1. Create a simple HTML form that submits a name using GET.</a></li>
+                    <li><a href="#q2">2. Receive a name from a POST form.</a></li>
+                    <li><a href="#q3">3. Display a submitted email address after basic validation.</a></li>
+                    <li><a href="#q4">4. Validate that a required name is not empty.</a></li>
+                    <li><a href="#q5">5. Read a selected course from a dropdown.</a></li>
+                    <li><a href="#q6">6. Read a checkbox value safely.</a></li>
+                    <li><a href="#q7">7. Show how a submitted value is accessed using GET.</a></li>
+                    <li><a href="#q8">8. Explain GET versus POST with a small example.</a></li>
+                    <li><a href="#q9">9. Validate student registration fields on the server.</a></li>
+                    <li><a href="#q10">10. Demonstrate a login form with server-side field validation.</a></li>
+                    <li><a href="#q11">11. Sanitize output to help prevent HTML injection.</a></li>
+                    <li><a href="#q12">12. Preserve a form value after submission.</a></li>
+                </ul>
+            </div>
+
+            <div class="question-section" id="q1">
+                <h3>1. Create a simple HTML form that submits a name using GET.</h3>
+                <div class="answer-box">
+                    <h4>Answer 1:</h4>
+                    <pre><code>&lt;!doctype html&gt;
+&lt;form method=&quot;get&quot; action=&quot;&quot;&gt;
+  &lt;label&gt;Name: &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;&lt;/label&gt;
+  &lt;button type=&quot;submit&quot;&gt;Send&lt;/button&gt;
+&lt;/form&gt;
+&lt;?php
+if (isset($_GET[&quot;name&quot;])) {
+    echo &quot;Hello, &quot; . htmlspecialchars($_GET[&quot;name&quot;], ENT_QUOTES, &quot;UTF-8&quot;);
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 1:</h4>
+                    <pre><code>After submitting name=Asha: Hello, Asha</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Save as a .php file and open it through XAMPP at http://localhost/yourfile.php. GET values appear in the URL.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q2">
+                <h3>2. Receive a name from a POST form.</h3>
+                <div class="answer-box">
+                    <h4>Answer 2:</h4>
+                    <pre><code>&lt;!doctype html&gt;
+&lt;form method=&quot;post&quot; action=&quot;&quot;&gt;
+  &lt;input name=&quot;name&quot; required&gt;
+  &lt;button type=&quot;submit&quot;&gt;Send&lt;/button&gt;
+&lt;/form&gt;
+&lt;?php
+if ($_SERVER[&quot;REQUEST_METHOD&quot;] === &quot;POST&quot;) {
+    $name = trim($_POST[&quot;name&quot;] ?? &quot;&quot;);
+    echo &quot;Hello, &quot; . htmlspecialchars($name, ENT_QUOTES, &quot;UTF-8&quot;);
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 2:</h4>
+                    <pre><code>After submitting name=Asha: Hello, Asha</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>POST keeps form data out of the URL, but it is not encryption; use HTTPS for transport security.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q3">
+                <h3>3. Display a submitted email address after basic validation.</h3>
+                <div class="answer-box">
+                    <h4>Answer 3:</h4>
+                    <pre><code>&lt;?php
+$email = trim($_POST[&quot;email&quot;] ?? &quot;&quot;);
+if ($_SERVER[&quot;REQUEST_METHOD&quot;] === &quot;POST&quot;) {
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo &quot;Valid email&quot;;
+    } else {
+        echo &quot;Invalid email&quot;;
+    }
+}
+?&gt;
+&lt;form method=&quot;post&quot;&gt;
+  &lt;input type=&quot;email&quot; name=&quot;email&quot; required&gt;
+  &lt;button type=&quot;submit&quot;&gt;Check&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 3:</h4>
+                    <pre><code>Submitting student@example.com: Valid email</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Use your own test input when running the form.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q4">
+                <h3>4. Validate that a required name is not empty.</h3>
+                <div class="answer-box">
+                    <h4>Answer 4:</h4>
+                    <pre><code>&lt;?php
+if ($_SERVER[&quot;REQUEST_METHOD&quot;] === &quot;POST&quot;) {
+    $name = trim($_POST[&quot;name&quot;] ?? &quot;&quot;);
+    echo ($name === &quot;&quot;) ? &quot;Name is required&quot; : &quot;Name accepted&quot;;
+}
+?&gt;
+&lt;form method=&quot;post&quot;&gt;
+  &lt;input name=&quot;name&quot;&gt;
+  &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 4:</h4>
+                    <pre><code>Empty submission: Name is required</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q5">
+                <h3>5. Read a selected course from a dropdown.</h3>
+                <div class="answer-box">
+                    <h4>Answer 5:</h4>
+                    <pre><code>&lt;?php
+if ($_SERVER[&quot;REQUEST_METHOD&quot;] === &quot;POST&quot;) {
+    $course = $_POST[&quot;course&quot;] ?? &quot;&quot;;
+    echo &quot;Course: &quot; . htmlspecialchars($course, ENT_QUOTES, &quot;UTF-8&quot;);
+}
+?&gt;
+&lt;form method=&quot;post&quot;&gt;
+  &lt;select name=&quot;course&quot;&gt;
+    &lt;option value=&quot;BCA&quot;&gt;BCA&lt;/option&gt;
+    &lt;option value=&quot;BSc&quot;&gt;BSc&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 5:</h4>
+                    <pre><code>When BCA is selected: Course: BCA</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q6">
+                <h3>6. Read a checkbox value safely.</h3>
+                <div class="answer-box">
+                    <h4>Answer 6:</h4>
+                    <pre><code>&lt;?php
+if ($_SERVER[&quot;REQUEST_METHOD&quot;] === &quot;POST&quot;) {
+    if (isset($_POST[&quot;agree&quot;])) {
+        echo &quot;Accepted&quot;;
+    } else {
+        echo &quot;Please accept the terms&quot;;
+    }
+}
+?&gt;
+&lt;form method=&quot;post&quot;&gt;
+  &lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;agree&quot; value=&quot;yes&quot;&gt; I agree&lt;/label&gt;
+  &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 6:</h4>
+                    <pre><code>Checked: Accepted; unchecked: Please accept the terms</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q7">
+                <h3>7. Show how a submitted value is accessed using GET.</h3>
+                <div class="answer-box">
+                    <h4>Answer 7:</h4>
+                    <pre><code>&lt;?php
+$city = $_GET[&quot;city&quot;] ?? &quot;Not provided&quot;;
+echo htmlspecialchars($city, ENT_QUOTES, &quot;UTF-8&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 7:</h4>
+                    <pre><code>For URL ?city=Delhi: Delhi</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Use a URL such as http://localhost/file.php?city=Delhi.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q8">
+                <h3>8. Explain GET versus POST with a small example.</h3>
+                <div class="answer-box">
+                    <h4>Answer 8:</h4>
+                    <pre><code>&lt;!-- GET form --&gt;
+&lt;form method=&quot;get&quot;&gt;&lt;input name=&quot;q&quot;&gt;&lt;button&gt;Search&lt;/button&gt;&lt;/form&gt;
+&lt;!-- POST form --&gt;
+&lt;form method=&quot;post&quot;&gt;&lt;input name=&quot;name&quot;&gt;&lt;button&gt;Submit&lt;/button&gt;&lt;/form&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 8:</h4>
+                    <pre><code>GET: form values are appended to the URL. POST: values are sent in the request body.</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>GET is suitable for searches and bookmarkable filters; POST is commonly used for submissions that change data. Neither method alone provides confidentiality.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q9">
+                <h3>9. Validate student registration fields on the server.</h3>
+                <div class="answer-box">
+                    <h4>Answer 9:</h4>
+                    <pre><code>&lt;?php
+if ($_SERVER[&quot;REQUEST_METHOD&quot;] === &quot;POST&quot;) {
+    $name = trim($_POST[&quot;name&quot;] ?? &quot;&quot;);
+    $email = trim($_POST[&quot;email&quot;] ?? &quot;&quot;);
+    $errors = [];
+    if ($name === &quot;&quot;) $errors[] = &quot;Name is required&quot;;
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = &quot;Valid email required&quot;;
+    if ($errors) {
+        echo implode(&quot;&lt;br&gt;&quot;, $errors);
+    } else {
+        echo &quot;Registration details accepted&quot;;
+    }
+}
+?&gt;
+&lt;form method=&quot;post&quot;&gt;
+  &lt;input name=&quot;name&quot; placeholder=&quot;Name&quot;&gt;
+  &lt;input name=&quot;email&quot; type=&quot;email&quot; placeholder=&quot;Email&quot;&gt;
+  &lt;button&gt;Register&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 9:</h4>
+                    <pre><code>With valid name and email: Registration details accepted</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>This validates fields; saving a registration requires a database insert.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q10">
+                <h3>10. Demonstrate a login form with server-side field validation.</h3>
+                <div class="answer-box">
+                    <h4>Answer 10:</h4>
+                    <pre><code>&lt;?php
+if ($_SERVER[&quot;REQUEST_METHOD&quot;] === &quot;POST&quot;) {
+    $username = trim($_POST[&quot;username&quot;] ?? &quot;&quot;);
+    $password = $_POST[&quot;password&quot;] ?? &quot;&quot;;
+    if ($username === &quot;&quot; || $password === &quot;&quot;) {
+        echo &quot;Both fields are required&quot;;
+    } else {
+        echo &quot;Fields received; verify credentials on the server&quot;;
+    }
+}
+?&gt;
+&lt;form method=&quot;post&quot;&gt;
+  &lt;input name=&quot;username&quot; required&gt;
+  &lt;input name=&quot;password&quot; type=&quot;password&quot; required&gt;
+  &lt;button&gt;Login&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 10:</h4>
+                    <pre><code>With both fields filled: Fields received; verify credentials on the server</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>This is field validation only, not authentication. Real authentication should query the database and use password_verify() with a stored password hash.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q11">
+                <h3>11. Sanitize output to help prevent HTML injection.</h3>
+                <div class="answer-box">
+                    <h4>Answer 11:</h4>
+                    <pre><code>&lt;?php
+$comment = $_POST[&quot;comment&quot;] ?? &quot;&lt;b&gt;Hello&lt;/b&gt;&quot;;
+echo htmlspecialchars($comment, ENT_QUOTES, &quot;UTF-8&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 11:</h4>
+                    <pre><code>&amp;lt;b&amp;gt;Hello&amp;lt;/b&amp;gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Escape user-supplied text when displaying it in HTML.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q12">
+                <h3>12. Preserve a form value after submission.</h3>
+                <div class="answer-box">
+                    <h4>Answer 12:</h4>
+                    <pre><code>&lt;?php
+$name = $_POST[&quot;name&quot;] ?? &quot;&quot;;
+?&gt;
+&lt;form method=&quot;post&quot;&gt;
+  &lt;input name=&quot;name&quot; value=&quot;&lt;?= htmlspecialchars($name, ENT_QUOTES, &#x27;UTF-8&#x27;) ?&gt;&quot;&gt;
+  &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+&lt;?php
+if ($name !== &quot;&quot;) echo &quot;Submitted: &quot; . htmlspecialchars($name, ENT_QUOTES, &quot;UTF-8&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 12:</h4>
+                    <pre><code>After submitting Asha: Submitted: Asha</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>The input value is escaped before being inserted into the HTML attribute.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>DAISY DHIMAN BCA 4205/25 SEC A</p>
+    </footer>
+</body>
+</html>

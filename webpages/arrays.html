@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARRAYS - BCA 4205/25 Daisy Dhiman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="simple-nav">
+        <div class="nav-logo"><a href="../index.html">Backend Web Development</a></div>
+    </nav>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">&larr; Back to Home</a>
+
+        <div class="questions-page">
+            <h1>ARRAYS</h1>
+
+            <div class="question-index">
+                <h2>Questions List</h2>
+                <ul>
+                    <li><a href="#q1">1. Create and display an indexed array element.</a></li>
+                    <li><a href="#q2">2. Count the elements of an array.</a></li>
+                    <li><a href="#q3">3. Add an item to the end of an array.</a></li>
+                    <li><a href="#q4">4. Add an item using array_push().</a></li>
+                    <li><a href="#q5">5. Remove and display the last item using array_pop().</a></li>
+                    <li><a href="#q6">6. Loop through an indexed array.</a></li>
+                    <li><a href="#q7">7. Access an associative array by key.</a></li>
+                    <li><a href="#q8">8. Check whether an item exists using in_array().</a></li>
+                    <li><a href="#q9">9. Get all keys from an associative array.</a></li>
+                    <li><a href="#q10">10. Merge two arrays.</a></li>
+                    <li><a href="#q11">11. Sort an array in ascending order.</a></li>
+                    <li><a href="#q12">12. Access an element in a multidimensional array.</a></li>
+                </ul>
+            </div>
+
+            <div class="question-section" id="q1">
+                <h3>1. Create and display an indexed array element.</h3>
+                <div class="answer-box">
+                    <h4>Answer 1:</h4>
+                    <pre><code>&lt;?php
+$fruits = [&quot;Apple&quot;, &quot;Banana&quot;, &quot;Mango&quot;];
+echo $fruits[2];
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 1:</h4>
+                    <pre><code>Mango</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q2">
+                <h3>2. Count the elements of an array.</h3>
+                <div class="answer-box">
+                    <h4>Answer 2:</h4>
+                    <pre><code>&lt;?php
+$numbers = [10, 20, 30, 40];
+echo count($numbers);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 2:</h4>
+                    <pre><code>4</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q3">
+                <h3>3. Add an item to the end of an array.</h3>
+                <div class="answer-box">
+                    <h4>Answer 3:</h4>
+                    <pre><code>&lt;?php
+$colors = [&quot;Red&quot;, &quot;Blue&quot;];
+$colors[] = &quot;Green&quot;;
+echo implode(&quot;, &quot;, $colors);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 3:</h4>
+                    <pre><code>Red, Blue, Green</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q4">
+                <h3>4. Add an item using array_push().</h3>
+                <div class="answer-box">
+                    <h4>Answer 4:</h4>
+                    <pre><code>&lt;?php
+$items = [&quot;Pen&quot;];
+array_push($items, &quot;Pencil&quot;, &quot;Eraser&quot;);
+echo count($items);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 4:</h4>
+                    <pre><code>3</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q5">
+                <h3>5. Remove and display the last item using array_pop().</h3>
+                <div class="answer-box">
+                    <h4>Answer 5:</h4>
+                    <pre><code>&lt;?php
+$numbers = [2, 4, 6];
+echo array_pop($numbers) . &quot; &quot;;
+echo count($numbers);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 5:</h4>
+                    <pre><code>6 2</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q6">
+                <h3>6. Loop through an indexed array.</h3>
+                <div class="answer-box">
+                    <h4>Answer 6:</h4>
+                    <pre><code>&lt;?php
+$nums = [3, 6, 9];
+foreach ($nums as $num) {
+    echo $num . &quot; &quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 6:</h4>
+                    <pre><code>3 6 9</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q7">
+                <h3>7. Access an associative array by key.</h3>
+                <div class="answer-box">
+                    <h4>Answer 7:</h4>
+                    <pre><code>&lt;?php
+$student = [&quot;name&quot; =&gt; &quot;Mira&quot;, &quot;course&quot; =&gt; &quot;BCA&quot;];
+echo $student[&quot;course&quot;];
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 7:</h4>
+                    <pre><code>BCA</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q8">
+                <h3>8. Check whether an item exists using in_array().</h3>
+                <div class="answer-box">
+                    <h4>Answer 8:</h4>
+                    <pre><code>&lt;?php
+$colors = [&quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot;];
+var_dump(in_array(&quot;Green&quot;, $colors));
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 8:</h4>
+                    <pre><code>bool(true)</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q9">
+                <h3>9. Get all keys from an associative array.</h3>
+                <div class="answer-box">
+                    <h4>Answer 9:</h4>
+                    <pre><code>&lt;?php
+$data = [&quot;name&quot; =&gt; &quot;Asha&quot;, &quot;age&quot; =&gt; 20];
+echo implode(&quot;,&quot;, array_keys($data));
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 9:</h4>
+                    <pre><code>name,age</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q10">
+                <h3>10. Merge two arrays.</h3>
+                <div class="answer-box">
+                    <h4>Answer 10:</h4>
+                    <pre><code>&lt;?php
+$a = [1, 2];
+$b = [3, 4];
+echo implode(&quot; &quot;, array_merge($a, $b));
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 10:</h4>
+                    <pre><code>1 2 3 4</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q11">
+                <h3>11. Sort an array in ascending order.</h3>
+                <div class="answer-box">
+                    <h4>Answer 11:</h4>
+                    <pre><code>&lt;?php
+$nums = [8, 2, 5];
+sort($nums);
+echo implode(&quot; &quot;, $nums);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 11:</h4>
+                    <pre><code>2 5 8</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q12">
+                <h3>12. Access an element in a multidimensional array.</h3>
+                <div class="answer-box">
+                    <h4>Answer 12:</h4>
+                    <pre><code>&lt;?php
+$students = [
+    [&quot;Asha&quot;, 80],
+    [&quot;Ravi&quot;, 92]
+];
+echo $students[1][0] . &quot; &quot; . $students[1][1];
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 12:</h4>
+                    <pre><code>Ravi 92</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>DAISY DHIMAN BCA 4205/25 SEC A</p>
+    </footer>
+</body>
+</html>

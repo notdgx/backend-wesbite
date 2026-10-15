@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STRING HANDLING - BCA 4205/25 Daisy Dhiman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="simple-nav">
+        <div class="nav-logo"><a href="../index.html">Backend Web Development</a></div>
+    </nav>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">&larr; Back to Home</a>
+
+        <div class="questions-page">
+            <h1>STRING HANDLING</h1>
+
+            <div class="question-index">
+                <h2>Questions List</h2>
+                <ul>
+                    <li><a href="#q1">1. Create and display a string.</a></li>
+                    <li><a href="#q2">2. Access a character by its zero-based index.</a></li>
+                    <li><a href="#q3">3. Find the length of a string.</a></li>
+                    <li><a href="#q4">4. Convert a string to uppercase.</a></li>
+                    <li><a href="#q5">5. Convert a string to lowercase.</a></li>
+                    <li><a href="#q6">6. Extract part of a string using substr().</a></li>
+                    <li><a href="#q7">7. Find the position of a word using strpos().</a></li>
+                    <li><a href="#q8">8. Replace a word using str_replace().</a></li>
+                    <li><a href="#q9">9. Remove surrounding whitespace using trim().</a></li>
+                    <li><a href="#q10">10. Split a comma-separated string into an array.</a></li>
+                    <li><a href="#q11">11. Join array elements into a string using implode().</a></li>
+                    <li><a href="#q12">12. Format a string with sprintf().</a></li>
+                </ul>
+            </div>
+
+            <div class="question-section" id="q1">
+                <h3>1. Create and display a string.</h3>
+                <div class="answer-box">
+                    <h4>Answer 1:</h4>
+                    <pre><code>&lt;?php
+$message = &quot;Welcome to PHP&quot;;
+echo $message;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 1:</h4>
+                    <pre><code>Welcome to PHP</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q2">
+                <h3>2. Access a character by its zero-based index.</h3>
+                <div class="answer-box">
+                    <h4>Answer 2:</h4>
+                    <pre><code>&lt;?php
+$text = &quot;Hello&quot;;
+echo $text[1];
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 2:</h4>
+                    <pre><code>e</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q3">
+                <h3>3. Find the length of a string.</h3>
+                <div class="answer-box">
+                    <h4>Answer 3:</h4>
+                    <pre><code>&lt;?php
+echo strlen(&quot;Backend&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 3:</h4>
+                    <pre><code>7</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q4">
+                <h3>4. Convert a string to uppercase.</h3>
+                <div class="answer-box">
+                    <h4>Answer 4:</h4>
+                    <pre><code>&lt;?php
+echo strtoupper(&quot;php language&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 4:</h4>
+                    <pre><code>PHP LANGUAGE</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q5">
+                <h3>5. Convert a string to lowercase.</h3>
+                <div class="answer-box">
+                    <h4>Answer 5:</h4>
+                    <pre><code>&lt;?php
+echo strtolower(&quot;HELLO PHP&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 5:</h4>
+                    <pre><code>hello php</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q6">
+                <h3>6. Extract part of a string using substr().</h3>
+                <div class="answer-box">
+                    <h4>Answer 6:</h4>
+                    <pre><code>&lt;?php
+echo substr(&quot;Programming&quot;, 0, 7);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 6:</h4>
+                    <pre><code>Program</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q7">
+                <h3>7. Find the position of a word using strpos().</h3>
+                <div class="answer-box">
+                    <h4>Answer 7:</h4>
+                    <pre><code>&lt;?php
+$text = &quot;Learn PHP today&quot;;
+echo strpos($text, &quot;PHP&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 7:</h4>
+                    <pre><code>6</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Positions are zero-based. Test strpos() with !== false because a match can occur at position 0.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q8">
+                <h3>8. Replace a word using str_replace().</h3>
+                <div class="answer-box">
+                    <h4>Answer 8:</h4>
+                    <pre><code>&lt;?php
+echo str_replace(&quot;Java&quot;, &quot;PHP&quot;, &quot;Learn Java now&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 8:</h4>
+                    <pre><code>Learn PHP now</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q9">
+                <h3>9. Remove surrounding whitespace using trim().</h3>
+                <div class="answer-box">
+                    <h4>Answer 9:</h4>
+                    <pre><code>&lt;?php
+$text = &quot;  hello  &quot;;
+echo &quot;[&quot; . trim($text) . &quot;]&quot;;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 9:</h4>
+                    <pre><code>[hello]</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q10">
+                <h3>10. Split a comma-separated string into an array.</h3>
+                <div class="answer-box">
+                    <h4>Answer 10:</h4>
+                    <pre><code>&lt;?php
+$fruits = explode(&quot;,&quot;, &quot;apple,banana,mango&quot;);
+echo $fruits[1];
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 10:</h4>
+                    <pre><code>banana</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q11">
+                <h3>11. Join array elements into a string using implode().</h3>
+                <div class="answer-box">
+                    <h4>Answer 11:</h4>
+                    <pre><code>&lt;?php
+$words = [&quot;Backend&quot;, &quot;Web&quot;, &quot;Development&quot;];
+echo implode(&quot; &quot;, $words);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 11:</h4>
+                    <pre><code>Backend Web Development</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q12">
+                <h3>12. Format a string with sprintf().</h3>
+                <div class="answer-box">
+                    <h4>Answer 12:</h4>
+                    <pre><code>&lt;?php
+$name = &quot;Ravi&quot;;
+$marks = 86;
+echo sprintf(&quot;%s scored %d marks.&quot;, $name, $marks);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 12:</h4>
+                    <pre><code>Ravi scored 86 marks.</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>DAISY DHIMAN BCA 4205/25 SEC A</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOOPING CONSTRUCTS - BCA 4205/25 Daisy Dhiman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="simple-nav">
+        <div class="nav-logo"><a href="../index.html">Backend Web Development</a></div>
+    </nav>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">&larr; Back to Home</a>
+
+        <div class="questions-page">
+            <h1>LOOPING CONSTRUCTS</h1>
+
+            <div class="question-index">
+                <h2>Questions List</h2>
+                <ul>
+                    <li><a href="#q1">1. Print numbers 1 to 5 using for.</a></li>
+                    <li><a href="#q2">2. Print numbers 5 to 1 using a for loop.</a></li>
+                    <li><a href="#q3">3. Print numbers 1 to 4 using while.</a></li>
+                    <li><a href="#q4">4. Demonstrate a do-while loop.</a></li>
+                    <li><a href="#q5">5. Print each item in an indexed array using foreach.</a></li>
+                    <li><a href="#q6">6. Print keys and values from an associative array.</a></li>
+                    <li><a href="#q7">7. Stop a loop with break.</a></li>
+                    <li><a href="#q8">8. Skip one iteration using continue.</a></li>
+                    <li><a href="#q9">9. Print a 2-by-3 rectangle of stars using nested loops.</a></li>
+                    <li><a href="#q10">10. Calculate the sum of numbers from 1 to 5.</a></li>
+                    <li><a href="#q11">11. Calculate the factorial of 5 using a loop.</a></li>
+                    <li><a href="#q12">12. Print only even numbers from an array.</a></li>
+                </ul>
+            </div>
+
+            <div class="question-section" id="q1">
+                <h3>1. Print numbers 1 to 5 using for.</h3>
+                <div class="answer-box">
+                    <h4>Answer 1:</h4>
+                    <pre><code>&lt;?php
+for ($i = 1; $i &lt;= 5; $i++) {
+    echo $i . &quot; &quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 1:</h4>
+                    <pre><code>1 2 3 4 5</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q2">
+                <h3>2. Print numbers 5 to 1 using a for loop.</h3>
+                <div class="answer-box">
+                    <h4>Answer 2:</h4>
+                    <pre><code>&lt;?php
+for ($i = 5; $i &gt;= 1; $i--) {
+    echo $i . &quot; &quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 2:</h4>
+                    <pre><code>5 4 3 2 1</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q3">
+                <h3>3. Print numbers 1 to 4 using while.</h3>
+                <div class="answer-box">
+                    <h4>Answer 3:</h4>
+                    <pre><code>&lt;?php
+$i = 1;
+while ($i &lt;= 4) {
+    echo $i . &quot; &quot;;
+    $i++;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 3:</h4>
+                    <pre><code>1 2 3 4</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q4">
+                <h3>4. Demonstrate a do-while loop.</h3>
+                <div class="answer-box">
+                    <h4>Answer 4:</h4>
+                    <pre><code>&lt;?php
+$i = 6;
+do {
+    echo $i;
+    $i++;
+} while ($i &lt;= 5);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 4:</h4>
+                    <pre><code>6</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>A do-while loop executes its body at least once.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q5">
+                <h3>5. Print each item in an indexed array using foreach.</h3>
+                <div class="answer-box">
+                    <h4>Answer 5:</h4>
+                    <pre><code>&lt;?php
+$colors = [&quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot;];
+foreach ($colors as $color) {
+    echo $color . &quot; &quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 5:</h4>
+                    <pre><code>Red Green Blue</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q6">
+                <h3>6. Print keys and values from an associative array.</h3>
+                <div class="answer-box">
+                    <h4>Answer 6:</h4>
+                    <pre><code>&lt;?php
+$student = [&quot;name&quot; =&gt; &quot;Asha&quot;, &quot;age&quot; =&gt; 19];
+foreach ($student as $key =&gt; $value) {
+    echo &quot;$key=$value &quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 6:</h4>
+                    <pre><code>name=Asha age=19</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q7">
+                <h3>7. Stop a loop with break.</h3>
+                <div class="answer-box">
+                    <h4>Answer 7:</h4>
+                    <pre><code>&lt;?php
+for ($i = 1; $i &lt;= 5; $i++) {
+    if ($i == 4) break;
+    echo $i . &quot; &quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 7:</h4>
+                    <pre><code>1 2 3</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q8">
+                <h3>8. Skip one iteration using continue.</h3>
+                <div class="answer-box">
+                    <h4>Answer 8:</h4>
+                    <pre><code>&lt;?php
+for ($i = 1; $i &lt;= 5; $i++) {
+    if ($i == 3) continue;
+    echo $i . &quot; &quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 8:</h4>
+                    <pre><code>1 2 4 5</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q9">
+                <h3>9. Print a 2-by-3 rectangle of stars using nested loops.</h3>
+                <div class="answer-box">
+                    <h4>Answer 9:</h4>
+                    <pre><code>&lt;?php
+for ($r = 1; $r &lt;= 2; $r++) {
+    for ($c = 1; $c &lt;= 3; $c++) {
+        echo &quot;*&quot;;
+    }
+    echo &quot;\n&quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 9:</h4>
+                    <pre><code>***
+***</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q10">
+                <h3>10. Calculate the sum of numbers from 1 to 5.</h3>
+                <div class="answer-box">
+                    <h4>Answer 10:</h4>
+                    <pre><code>&lt;?php
+$sum = 0;
+for ($i = 1; $i &lt;= 5; $i++) {
+    $sum += $i;
+}
+echo $sum;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 10:</h4>
+                    <pre><code>15</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q11">
+                <h3>11. Calculate the factorial of 5 using a loop.</h3>
+                <div class="answer-box">
+                    <h4>Answer 11:</h4>
+                    <pre><code>&lt;?php
+$n = 5;
+$factorial = 1;
+for ($i = 1; $i &lt;= $n; $i++) {
+    $factorial *= $i;
+}
+echo $factorial;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 11:</h4>
+                    <pre><code>120</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q12">
+                <h3>12. Print only even numbers from an array.</h3>
+                <div class="answer-box">
+                    <h4>Answer 12:</h4>
+                    <pre><code>&lt;?php
+$numbers = [1, 2, 3, 4, 5, 6];
+foreach ($numbers as $number) {
+    if ($number % 2 != 0) continue;
+    echo $number . &quot; &quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 12:</h4>
+                    <pre><code>2 4 6</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>DAISY DHIMAN BCA 4205/25 SEC A</p>
+    </footer>
+</body>
+</html>

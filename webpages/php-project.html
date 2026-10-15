@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP PROJECT - BCA 4205/25 Daisy Dhiman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="simple-nav">
+        <div class="nav-logo"><a href="../index.html">Backend Web Development</a></div>
+    </nav>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">&larr; Back to Home</a>
+
+        <div class="questions-page">
+            <h1>PHP PROJECT</h1>
+
+            <div class="question-index">
+                <h2>Project Navigation</h2>
+                <ul>
+                    <li><a href="#overview">1. Project Overview & Features</a></li>
+                    <li><a href="#screenshots">2. Project Screenshots & Workflow</a></li>
+                    <li><a href="#connect-code">3. Database Connection (connect.php)</a></li>
+                    <li><a href="#home-code">4. Home & User Dashboard (home.php)</a></li>
+                    <li><a href="#register-code">5. User Registration (register.php)</a></li>
+                    <li><a href="#update-code">6. User Update (update.php)</a></li>
+                </ul>
+            </div>
+
+            <!-- Overview -->
+            <div class="question-section" id="overview">
+                <h2>PHP Project: User Registration, Login & Management System</h2>
+                <br>
+                <h3>Project Overview</h3>
+                <p>This project is an online registration and user management system developed using PHP and MySQL. It features user registration with avatar image upload, session-based authentication (login/logout), and full CRUD operations allowing authorized users to view, edit, and delete user records.</p>
+                <br>
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Automated Database Setup:</strong> Automatically checks for and creates the <code>college_db</code> database and <code>user</code> table if they do not exist.</li>
+                    <li><strong>User Registration:</strong> Captures user credentials, contact details, role, class, and handles optional photo upload into the <code>uploads/</code> directory.</li>
+                    <li><strong>Session-Based Authentication:</strong> Verifies user credentials on login and protects internal management pages using PHP sessions.</li>
+                    <li><strong>User Management (CRUD):</strong> Displays registered user records with profile photos, providing options to edit profiles and delete records with automatic file cleanup.</li>
+                    <li><strong>Prepared Statements:</strong> Utilizes prepared MySQLi queries for registration, update, and search operations to prevent SQL injection vulnerabilities.</li>
+                </ul>
+            </div>
+
+            <!-- Screenshots -->
+            <div class="question-section" id="screenshots">
+                <h2>Project UI & Workflow Screenshots</h2>
+                <br>
+
+                <h3>1. User Registration Page</h3>
+                <p>The registration interface allows new users to submit their full profile information, select their role and class, and upload an avatar photo.</p>
+                <img src="../assets/project-1-registerpage.png" alt="User Registration Page">
+                <br>
+
+                <h3>2. User Login Interface</h3>
+                <p>Secure login portal verifying mobile number, password, and designated role before granting access to the system dashboard.</p>
+                <img src="../assets/project-2-loginpage.png" alt="User Login Page">
+                <img src="../assets/project-3-loginpage-2.png" alt="User Login Status">
+                <br>
+
+                <h3>3. User Dashboard & Listing (Home)</h3>
+                <p>Displays all registered members in a tabular view with profile pictures, role tags, and direct actions to edit or delete records.</p>
+                <img src="../assets/project-4-users.png" alt="Users Dashboard">
+                <img src="../assets/project-6-users-2.png" alt="Updated Users Listing">
+                <br>
+
+                <h3>4. Delete User Confirmation</h3>
+                <p>Interactive confirmation dialog ensuring accidental deletion is prevented while removing associated user data and avatar files.</p>
+                <img src="../assets/project-5-deleteuser.png" alt="Delete User Confirmation">
+                <br>
+
+                <h3>5. Administration Panel View</h3>
+                <p>Administrative view showing system status, database health confirmation, and user directory management tools.</p>
+                <img src="../assets/project-7-adminpage.png" alt="Admin Dashboard View">
+            </div>
+
+            <!-- Connect Code -->
+            <div class="question-section" id="connect-code">
+                <h2>Database Connection & Auto-Setup (connect.php)</h2>
+                <p>Establishes connection to the MySQL server, verifies if <code>college_db</code> exists (creating it if absent), selects the database, and ensures the <code>user</code> table is created with the required schema.</p>
+                <div class="answer-box">
+                    <h4>connect.php:</h4>
+                    <pre><code>&lt;?php
+// Connect to MySQL first (without choosing a database).
+$con = mysqli_connect(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;);
+
+if (!$con) {
+    die(&quot;MySQL is not running. Open XAMPP and start MySQL.&quot;);
+}
+
+// Check whether the database already exists. Create it only if it is missing.
+$check = mysqli_query($con, &quot;SHOW DATABASES LIKE &#x27;college_db&#x27;&quot;);
+if (mysqli_num_rows($check) &gt; 0) {
+    $dbMessage = &quot;Database &#x27;college_db&#x27; already exists.&quot;;
+} else {
+    if (!mysqli_query($con, &quot;CREATE DATABASE college_db&quot;)) {
+        die(&quot;Could not create database &#x27;college_db&#x27;. Check your MySQL settings.&quot;);
+    }
+    $dbMessage = &quot;Database &#x27;voting&#x27; was created.&quot;;
+}
+
+mysqli_select_db($con, &quot;college_db&quot;);
+
+// If the database exists but the table doesn&#x27;t, create the table too.
+$tableCreated = mysqli_query($con, &quot;CREATE TABLE IF NOT EXISTS user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    mobile VARCHAR(30) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    gender VARCHAR(20) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    photo VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL,
+    status INT DEFAULT 0,
+    votes INT DEFAULT 0,
+    `class` VARCHAR(30) NOT NULL
+)&quot;);
+if (!$tableCreated) {
+    die(&quot;Could not create the user table in the college_db database.&quot;);
+}
+?&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <!-- Home Code -->
+            <div class="question-section" id="home-code">
+                <h2>Home & User Listing Dashboard (home.php)</h2>
+                <p>Protects access using PHP session validation, retrieves all registered user records ordered by ID descending, and renders the user management table with options to add, edit, or delete users.</p>
+                <div class="answer-box">
+                    <h4>home.php:</h4>
+                    <pre><code>&lt;?php
+session_start();
+if (!isset($_SESSION[&#x27;user_name&#x27;])) {
+    header(&quot;Location: index.php&quot;);
+    exit;
+}
+include(&quot;connect.php&quot;);
+$result = mysqli_query($con, &quot;SELECT * FROM user ORDER BY id DESC&quot;);
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;title&gt;Home - Online Registration System&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;stylesheet.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav class=&quot;simple-nav&quot;&gt;&lt;a href=&quot;home.php&quot;&gt;Online Registration System&lt;/a&gt;&lt;/nav&gt;
+    &lt;main class=&quot;container&quot;&gt;
+        &lt;section class=&quot;hero-section&quot;&gt;
+            &lt;h1&gt;Registered Users&lt;/h1&gt;
+            &lt;p&gt;Hello, &lt;strong&gt;&lt;?php echo htmlspecialchars($_SESSION[&#x27;user_name&#x27;]); ?&gt;&lt;/strong&gt;&lt;/p&gt;
+            &lt;p class=&quot;db-message&quot;&gt;&lt;?php echo htmlspecialchars($dbMessage); ?&gt;&lt;/p&gt;
+            &lt;div class=&quot;top-actions&quot;&gt;&lt;a class=&quot;back-link&quot; href=&quot;register.html&quot;&gt;Add user&lt;/a&gt;
+                &lt;form action=&quot;logout.php&quot; method=&quot;post&quot;&gt;&lt;button class=&quot;back-link&quot; type=&quot;submit&quot;&gt;Logout&lt;/button&gt;&lt;/form&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;table-wrap&quot;&gt;&lt;table&gt;
+                &lt;thead&gt;&lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Mobile&lt;/th&gt;&lt;th&gt;Address&lt;/th&gt;&lt;th&gt;Photo&lt;/th&gt;&lt;th&gt;Role&lt;/th&gt;&lt;th&gt;Gender&lt;/th&gt;&lt;th&gt;Class&lt;/th&gt;&lt;th&gt;Edit&lt;/th&gt;&lt;th&gt;Delete&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                &lt;tbody&gt;
+                &lt;?php while ($r = mysqli_fetch_assoc($result)) { ?&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;&lt;?php echo $r[&#x27;id&#x27;]; ?&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;?php echo htmlspecialchars($r[&#x27;name&#x27;]); ?&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;?php echo htmlspecialchars($r[&#x27;mobile&#x27;]); ?&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;?php echo htmlspecialchars($r[&#x27;address&#x27;]); ?&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;?php if ($r[&#x27;photo&#x27;] != &quot;&quot;) { ?&gt;&lt;img class=&quot;user-photo&quot; src=&quot;uploads/&lt;?php echo rawurlencode($r[&#x27;photo&#x27;]); ?&gt;&quot; alt=&quot;Photo&quot;&gt;&lt;?php } else { echo &quot;-&quot;; } ?&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;?php echo $r[&#x27;role&#x27;] == 1 ? &quot;Admin&quot; : &quot;User&quot;; ?&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;?php echo htmlspecialchars($r[&#x27;gender&#x27;]); ?&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;?php echo htmlspecialchars($r[&#x27;class&#x27;]); ?&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;a href=&quot;edit.php?id=&lt;?php echo $r[&#x27;id&#x27;]; ?&gt;&quot;&gt;Edit&lt;/a&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;a href=&quot;delete.php?id=&lt;?php echo $r[&#x27;id&#x27;]; ?&gt;&quot; onclick=&quot;return confirm(&#x27;Delete this user?&#x27;)&quot;&gt;Delete&lt;/a&gt;&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;?php } ?&gt;
+                &lt;/tbody&gt;
+            &lt;/table&gt;&lt;/div&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;Online Registration System&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <!-- Register Code -->
+            <div class="question-section" id="register-code">
+                <h2>User Registration Processing (register.php)</h2>
+                <p>Validates POST submission, verifies matching passwords, handles timestamp-prefixed file uploads into the uploads directory, and securely inserts the new user using prepared statements.</p>
+                <div class="answer-box">
+                    <h4>register.php:</h4>
+                    <pre><code>&lt;?php
+include(&quot;connect.php&quot;);
+
+if ($_SERVER[&#x27;REQUEST_METHOD&#x27;] != &#x27;POST&#x27;) {
+    header(&quot;Location: register.html&quot;);
+    exit;
+}
+
+$name = trim($_POST[&#x27;name&#x27;]);
+$mobile = trim($_POST[&#x27;mobile&#x27;]);
+$password = $_POST[&#x27;password&#x27;];
+$cpassword = $_POST[&#x27;cpassword&#x27;];
+$address = trim($_POST[&#x27;address&#x27;]);
+$role = $_POST[&#x27;role&#x27;];
+$gender = $_POST[&#x27;gender&#x27;];
+$class = $_POST[&#x27;class&#x27;];
+$photo = &quot;&quot;;
+
+if ($password != $cpassword) {
+    die(&quot;Passwords do not match. &lt;a href=&#x27;register.html&#x27;&gt;Go back&lt;/a&gt;&quot;);
+}
+
+// The image is optional.
+if (!empty($_FILES[&#x27;photo&#x27;][&#x27;name&#x27;])) {
+    $photo = time() . &quot;_&quot; . basename($_FILES[&#x27;photo&#x27;][&#x27;name&#x27;]);
+    if (!move_uploaded_file($_FILES[&#x27;photo&#x27;][&#x27;tmp_name&#x27;], &quot;uploads/&quot; . $photo)) {
+        die(&quot;Could not upload the image. &lt;a href=&#x27;register.html&#x27;&gt;Try again&lt;/a&gt;&quot;);
+    }
+}
+
+$stmt = mysqli_prepare($con, &quot;INSERT INTO user (name, mobile, address, gender, password, photo, role, status, votes, `class`) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0, ?)&quot;);
+mysqli_stmt_bind_param($stmt, &quot;ssssssss&quot;, $name, $mobile, $address, $gender, $password, $photo, $role, $class);
+
+if (mysqli_stmt_execute($stmt)) {
+    header(&quot;Location: index.php?registered=1&quot;);
+    exit;
+} else {
+    if ($photo != &quot;&quot; &amp;&amp; file_exists(&quot;uploads/&quot; . $photo)) unlink(&quot;uploads/&quot; . $photo);
+    die(&quot;Registration failed. Please check your details. &lt;a href=&#x27;register.html&#x27;&gt;Go back&lt;/a&gt;&quot;);
+}
+?&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <!-- Update Code -->
+            <div class="question-section" id="update-code">
+                <h2>User Update Processing (update.php)</h2>
+                <p>Verifies active session and POST request, fetches existing record, preserves existing password and photo if unchanged, uploads new photo with cleanup of old file, and executes the UPDATE prepared statement.</p>
+                <div class="answer-box">
+                    <h4>update.php:</h4>
+                    <pre><code>&lt;?php
+session_start();
+if ($_SERVER[&#x27;REQUEST_METHOD&#x27;] != &#x27;POST&#x27;) {
+    header(&quot;Location: home.php&quot;);
+    exit;
+}
+include(&quot;connect.php&quot;);
+if (!isset($_SESSION[&#x27;user_name&#x27;])) {
+    header(&quot;Location: index.php&quot;);
+    exit;
+}
+
+$id = (int)($_POST[&#x27;id&#x27;] ?? 0);
+$name = trim($_POST[&#x27;name&#x27;]);
+$mobile = trim($_POST[&#x27;mobile&#x27;]);
+$password = $_POST[&#x27;password&#x27;];
+$address = trim($_POST[&#x27;address&#x27;]);
+$role = $_POST[&#x27;role&#x27;];
+$gender = $_POST[&#x27;gender&#x27;];
+$class = $_POST[&#x27;class&#x27;];
+
+// Keep the existing password and photo unless new ones are provided.
+$stmt = mysqli_prepare($con, &quot;SELECT password, photo FROM user WHERE id=?&quot;);
+mysqli_stmt_bind_param($stmt, &quot;i&quot;, $id);
+mysqli_stmt_execute($stmt);
+$old = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+if (!$old) die(&quot;User not found. &lt;a href=&#x27;home.php&#x27;&gt;Back&lt;/a&gt;&quot;);
+if ($password == &quot;&quot;) $password = $old[&#x27;password&#x27;];
+$photo = $old[&#x27;photo&#x27;];
+
+if (!empty($_FILES[&#x27;photo&#x27;][&#x27;name&#x27;])) {
+    $newPhoto = time() . &quot;_&quot; . basename($_FILES[&#x27;photo&#x27;][&#x27;name&#x27;]);
+    if (move_uploaded_file($_FILES[&#x27;photo&#x27;][&#x27;tmp_name&#x27;], &quot;uploads/&quot; . $newPhoto)) {
+        if ($photo != &quot;&quot; &amp;&amp; file_exists(&quot;uploads/&quot; . $photo)) unlink(&quot;uploads/&quot; . $photo);
+        $photo = $newPhoto;
+    }
+}
+
+$update = mysqli_prepare($con, &quot;UPDATE user SET name=?, mobile=?, password=?, address=?, photo=?, role=?, gender=?, `class`=? WHERE id=?&quot;);
+mysqli_stmt_bind_param($update, &quot;ssssssssi&quot;, $name, $mobile, $password, $address, $photo, $role, $gender, $class, $id);
+if (mysqli_stmt_execute($update)) {
+    header(&quot;Location: home.php&quot;);
+    exit;
+} else {
+    echo &quot;Update failed. &lt;a href=&#x27;home.php&#x27;&gt;Back to users&lt;/a&gt;&quot;;
+}
+?&gt;
+</code></pre>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>DAISY DHIMAN BCA 4205/25 SEC A</p>
+    </footer>
+</body>
+</html>

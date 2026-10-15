@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPERATORS AND EXPRESSIONS - BCA 4205/25 Daisy Dhiman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="simple-nav">
+        <div class="nav-logo"><a href="../index.html">Backend Web Development</a></div>
+    </nav>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">&larr; Back to Home</a>
+
+        <div class="questions-page">
+            <h1>OPERATORS AND EXPRESSIONS</h1>
+
+            <div class="question-index">
+                <h2>Questions List</h2>
+                <ul>
+                    <li><a href="#q1">1. Add two numbers.</a></li>
+                    <li><a href="#q2">2. Find the quotient and remainder of integer division.</a></li>
+                    <li><a href="#q3">3. Calculate a number raised to a power.</a></li>
+                    <li><a href="#q4">4. Use a compound assignment operator.</a></li>
+                    <li><a href="#q5">5. Compare two values using ==.</a></li>
+                    <li><a href="#q6">6. Compare two values using ===.</a></li>
+                    <li><a href="#q7">7. Check whether both conditions are true using &amp;&amp;.</a></li>
+                    <li><a href="#q8">8. Check whether at least one condition is true using ||.</a></li>
+                    <li><a href="#q9">9. Reverse a Boolean value using !.</a></li>
+                    <li><a href="#q10">10. Find the larger value using the ternary operator.</a></li>
+                    <li><a href="#q11">11. Provide a default value using the null coalescing operator.</a></li>
+                    <li><a href="#q12">12. Use the increment operator.</a></li>
+                </ul>
+            </div>
+
+            <div class="question-section" id="q1">
+                <h3>1. Add two numbers.</h3>
+                <div class="answer-box">
+                    <h4>Answer 1:</h4>
+                    <pre><code>&lt;?php
+$a = 14;
+$b = 6;
+echo $a + $b;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 1:</h4>
+                    <pre><code>20</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q2">
+                <h3>2. Find the quotient and remainder of integer division.</h3>
+                <div class="answer-box">
+                    <h4>Answer 2:</h4>
+                    <pre><code>&lt;?php
+$a = 17;
+$b = 5;
+echo intdiv($a, $b) . &quot; &quot;;
+echo $a % $b;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 2:</h4>
+                    <pre><code>3 2</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>intdiv() is available in PHP 7 and later.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q3">
+                <h3>3. Calculate a number raised to a power.</h3>
+                <div class="answer-box">
+                    <h4>Answer 3:</h4>
+                    <pre><code>&lt;?php
+echo 2 ** 4;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 3:</h4>
+                    <pre><code>16</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q4">
+                <h3>4. Use a compound assignment operator.</h3>
+                <div class="answer-box">
+                    <h4>Answer 4:</h4>
+                    <pre><code>&lt;?php
+$total = 10;
+$total += 7;
+echo $total;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 4:</h4>
+                    <pre><code>17</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q5">
+                <h3>5. Compare two values using ==.</h3>
+                <div class="answer-box">
+                    <h4>Answer 5:</h4>
+                    <pre><code>&lt;?php
+var_dump(5 == &quot;5&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 5:</h4>
+                    <pre><code>bool(true)</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q6">
+                <h3>6. Compare two values using ===.</h3>
+                <div class="answer-box">
+                    <h4>Answer 6:</h4>
+                    <pre><code>&lt;?php
+var_dump(5 === &quot;5&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 6:</h4>
+                    <pre><code>bool(false)</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>=== checks both value and data type.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q7">
+                <h3>7. Check whether both conditions are true using &amp;&amp;.</h3>
+                <div class="answer-box">
+                    <h4>Answer 7:</h4>
+                    <pre><code>&lt;?php
+$age = 22;
+$hasID = true;
+var_dump($age &gt;= 18 &amp;&amp; $hasID);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 7:</h4>
+                    <pre><code>bool(true)</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q8">
+                <h3>8. Check whether at least one condition is true using ||.</h3>
+                <div class="answer-box">
+                    <h4>Answer 8:</h4>
+                    <pre><code>&lt;?php
+$marks = 35;
+$attendance = 80;
+var_dump($marks &gt;= 40 || $attendance &gt;= 75);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 8:</h4>
+                    <pre><code>bool(true)</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q9">
+                <h3>9. Reverse a Boolean value using !.</h3>
+                <div class="answer-box">
+                    <h4>Answer 9:</h4>
+                    <pre><code>&lt;?php
+$isOpen = false;
+var_dump(!$isOpen);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 9:</h4>
+                    <pre><code>bool(true)</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q10">
+                <h3>10. Find the larger value using the ternary operator.</h3>
+                <div class="answer-box">
+                    <h4>Answer 10:</h4>
+                    <pre><code>&lt;?php
+$a = 9;
+$b = 12;
+$largest = ($a &gt; $b) ? $a : $b;
+echo $largest;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 10:</h4>
+                    <pre><code>12</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q11">
+                <h3>11. Provide a default value using the null coalescing operator.</h3>
+                <div class="answer-box">
+                    <h4>Answer 11:</h4>
+                    <pre><code>&lt;?php
+$username = $_GET[&quot;user&quot;] ?? &quot;Guest&quot;;
+echo $username;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 11:</h4>
+                    <pre><code>Guest</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Expected output assumes the URL has no user query parameter.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q12">
+                <h3>12. Use the increment operator.</h3>
+                <div class="answer-box">
+                    <h4>Answer 12:</h4>
+                    <pre><code>&lt;?php
+$count = 4;
+$count++;
+echo $count;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 12:</h4>
+                    <pre><code>5</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>DAISY DHIMAN BCA 4205/25 SEC A</p>
+    </footer>
+</body>
+</html>

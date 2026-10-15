@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BACKEND WEB DEVELOPMENT NOTES - BCA 4205/25 Daisy Dhiman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="simple-nav">
+        <div class="nav-logo"><a href="../index.html">Backend Web Development</a></div>
+    </nav>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">&larr; Back to Home</a>
+
+        <div class="questions-page">
+            <h1>BACKEND WEB DEVELOPMENT NOTES</h1>
+
+            <div class="question-index">
+                <h2>Notes Contents</h2>
+                <ul>
+                    <li><a href="#unit1">Unit I: Introduction to Internet Technologies</a></li>
+                    <li><a href="#unit2">Unit II: Introduction to PHP and String Handling</a></li>
+                    <li><a href="#unit3">Unit III: Handling HTML Forms with PHP</a></li>
+                    <li><a href="#unit4">Unit IV: Database Connectivity with MySQL</a></li>
+                    <li><a href="#quick-revision">Quick Revision Summary</a></li>
+                </ul>
+            </div>
+
+            <!-- Unit I -->
+            <div class="question-section" id="unit1">
+                <h2>Unit I: Introduction to Internet Technologies</h2>
+                <br>
+                <h3>1. Internet and the World Wide Web</h3>
+                <ul>
+                    <li><strong>Internet:</strong> A worldwide network of connected computer networks that communicate using standard protocols.</li>
+                    <li><strong>World Wide Web (WWW):</strong> A service on the Internet that provides linked pages and other resources through web browsers.</li>
+                    <li><strong>Client:</strong> Usually the browser that requests a resource.</li>
+                    <li><strong>Server:</strong> A computer or program that processes the request and sends a response.</li>
+                </ul>
+                <br>
+
+                <h3>2. Internet Protocols</h3>
+                <p>A <strong>protocol</strong> is a set of rules that devices follow to communicate.</p>
+                <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Protocol</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>TCP/IP</strong></td>
+                            <td>The core protocol suite used to move data between devices across networks. TCP provides reliable, ordered delivery; IP addresses and routes packets.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HTTP</strong></td>
+                            <td>Transfers web requests and responses between browsers and web servers.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HTTPS</strong></td>
+                            <td>HTTP protected using TLS encryption and authentication.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DNS</strong></td>
+                            <td>Translates domain names, such as <code>example.com</code>, into IP addresses.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SMTP</strong></td>
+                            <td>Sends and relays email between mail systems. Email retrieval commonly uses other protocols, such as IMAP or POP3.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <p><strong>TCP/IP layers (simplified):</strong> Application &rarr; Transport &rarr; Internet &rarr; Network Access.</p>
+                <br>
+                <img src="../assets/tcpip-arch.png" alt="TCP/IP model diagram">
+                <br>
+
+                <h3>3. IP Addressing</h3>
+                <p>An <strong>IP address</strong> identifies a network interface so data can be directed to the correct destination.</p>
+                <ul>
+                    <li><strong>IPv4:</strong> 32-bit address written as four decimal numbers, e.g. <code>192.168.1.10</code>.</li>
+                    <li><strong>IPv6:</strong> 128-bit address written in hexadecimal groups, e.g. <code>2001:db8::1</code>.</li>
+                    <li><strong>Public IP:</strong> Used for addressing on the public Internet.</li>
+                    <li><strong>Private IP:</strong> Used inside private networks, such as home or college networks.</li>
+                    <li><strong>Static IP:</strong> Usually remains fixed; <strong>dynamic IP:</strong> assigned automatically and may change.</li>
+                    <li><strong>Subnet mask/CIDR prefix:</strong> Indicates which part of an address identifies the network, e.g. <code>/24</code>.</li>
+                </ul>
+                <br>
+                <img src="../assets/ipv4_address.svg" alt="IPv4 address diagram">
+                <br>
+
+                <h3>4. Domain Name System (DNS)</h3>
+                <p>DNS is the Internet's naming system. It helps a browser find the IP address associated with a domain name.</p>
+                <p><strong>Basic flow:</strong> Browser &rarr; DNS resolver &rarr; DNS servers as needed &rarr; IP address returned &rarr; browser connects to the website. Results may be cached to speed up later lookups.</p>
+                <br>
+                <img src="../assets/dns_architecture.svg" alt="DNS resolution diagram">
+                <br>
+
+                <h3>5. HTTP Request and Response</h3>
+                <ol style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li>The browser sends an HTTP request to a server.</li>
+                    <li>The server processes it and returns a response.</li>
+                    <li>A response contains a status code, headers, and sometimes a body.</li>
+                </ol>
+                <p>Common status codes: <code>200 OK</code>, <code>404 Not Found</code>, <code>500 Internal Server Error</code>.</p>
+                <br>
+
+                <h3>6. HTML (HyperText Markup Language)</h3>
+                <p>HTML defines the <strong>structure and meaning</strong> of web-page content. Tags describe headings, paragraphs, links, images, forms, and other elements.</p>
+                <div class="answer-box">
+                    <h4>HTML Example:</h4>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Welcome&lt;/h1&gt;
+  &lt;p&gt;This is a web page.&lt;/p&gt;
+  &lt;a href="https://example.com"&gt;Visit a website&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+                <br>
+                <ul>
+                    <li><code>&lt;head&gt;</code> contains page metadata and resource references.</li>
+                    <li><code>&lt;body&gt;</code> contains the page content shown in the browser.</li>
+                    <li>HTML structures content; CSS styles it; JavaScript adds behaviour.</li>
+                </ul>
+                <br>
+                <img src="../assets/html_structure.png" alt="HTML document structure diagram">
+                <p style="text-align: center; color: #666; font-size: 0.95rem;">HTML document structure and hierarchy</p>
+                <br>
+
+                <h3>7. JavaScript Programming Fundamentals</h3>
+                <p>JavaScript is commonly used in the browser to respond to events, check form input, and update page content.</p>
+                <div class="answer-box">
+                    <h4>JavaScript Fundamentals Example:</h4>
+                    <pre><code>const name = "Sam";
+let marks = 75;
+
+if (marks &gt;= 40) {
+  console.log(`${name} passed`);
+} else {
+  console.log(`${name} failed`);
+}
+
+function add(a, b) {
+  return a + b;
+}</code></pre>
+                </div>
+                <br>
+                <p>Key fundamentals: variables (<code>let</code>, <code>const</code>), data types, operators, conditions, loops, functions, events, and DOM manipulation.</p>
+                <br>
+
+                <h3>8. Front-End vs Server-Side Scripting</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Front-end scripting</th>
+                            <th>Server-side scripting</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Runs in the user's browser.</td>
+                            <td>Runs on the web server.</td>
+                        </tr>
+                        <tr>
+                            <td>Commonly uses JavaScript.</td>
+                            <td>Commonly uses PHP in this syllabus.</td>
+                        </tr>
+                        <tr>
+                            <td>Handles interface behaviour and immediate interactions.</td>
+                            <td>Handles validation, authentication, business logic, and database operations.</td>
+                        </tr>
+                        <tr>
+                            <td>Cannot safely protect secrets or replace server validation.</td>
+                            <td>Can access protected server resources and databases.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <img src="../assets/frontend-vs-backend.png" alt="Front-end and back-end architecture">
+            </div>
+
+            <!-- Unit II -->
+            <div class="question-section" id="unit2">
+                <h2>Unit II: Introduction to PHP and String Handling</h2>
+                <br>
+                <h3>1. PHP Basics</h3>
+                <p>PHP is a server-side scripting language that can generate dynamic HTML. PHP code is commonly saved in a <code>.php</code> file and processed by a PHP-enabled server.</p>
+                <div class="answer-box">
+                    <h4>PHP Syntax Example:</h4>
+                    <pre><code>&lt;?php
+$name = "Sam";
+echo "Hello, " . $name;
+?&gt;</code></pre>
+                </div>
+                <br>
+                <ul>
+                    <li>PHP code begins with <code>&lt;?php</code>.</li>
+                    <li>Statements commonly end with <code>;</code>.</li>
+                    <li><code>//</code> and <code>/* ... */</code> are comment styles.</li>
+                    <li><code>echo</code> outputs content.</li>
+                </ul>
+                <br>
+
+                <h3>2. Variables, Constants, and Data Types</h3>
+                <div class="answer-box">
+                    <h4>Variables and Constants:</h4>
+                    <pre><code>$name = "Riya";       // string
+$age = 20;             // integer
+$percentage = 82.5;    // float
+$isStudent = true;     // boolean
+$subjects = ["PHP", "HTML"]; // array
+
+const COLLEGE = "ABC College";
+// Alternatively: define("SITE_NAME", "My Site");</code></pre>
+                </div>
+                <br>
+                <p>PHP variables begin with <code>$</code>. Variable names are case-sensitive. Common types include <strong>string, integer, float, boolean, array, object, and null</strong>. A constant's value cannot be reassigned after definition.</p>
+                <br>
+
+                <h3>3. Operators and Expressions</h3>
+                <ul>
+                    <li><strong>Arithmetic:</strong> <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>**</code></li>
+                    <li><strong>Assignment:</strong> <code>=</code>, <code>+=</code>, <code>-=</code> and <code>.=</code> (string concatenation assignment).</li>
+                    <li><strong>Comparison:</strong> <code>==</code>, <code>===</code>, <code>!=</code>, <code>!==</code>, <code>&lt;</code>, <code>&gt;</code></li>
+                    <li><strong>Logical:</strong> <code>&amp;&amp;</code>, <code>||</code>, <code>!</code></li>
+                    <li><strong>String concatenation:</strong> <code>.</code></li>
+                </ul>
+                <p>Prefer <code>===</code> when both value and type should match.</p>
+                <br>
+
+                <h3>4. Decisions and Loops</h3>
+                <div class="answer-box">
+                    <h4>Conditional Statements and Loops:</h4>
+                    <pre><code>if ($age &gt;= 18) {
+    echo "Adult";
+} elseif ($age &gt;= 13) {
+    echo "Teenager";
+} else {
+    echo "Child";
+}
+
+for ($i = 1; $i &lt;= 3; $i++) {
+    echo $i;
+}
+
+$subjects = ["PHP", "HTML"];
+foreach ($subjects as $subject) {
+    echo $subject;
+}</code></pre>
+                </div>
+                <br>
+                <p>PHP also supports <code>switch</code>, <code>while</code>, and <code>do ... while</code>. PHP can be mixed with HTML to display dynamic content:</p>
+                <div class="answer-box">
+                    <h4>Mixing PHP with HTML:</h4>
+                    <pre><code>&lt;ul&gt;
+&lt;?php foreach ($subjects as $subject): ?&gt;
+  &lt;li&gt;&lt;?= htmlspecialchars($subject) ?&gt;&lt;/li&gt;
+&lt;?php endforeach; ?&gt;
+&lt;/ul&gt;</code></pre>
+                </div>
+                <br>
+
+                <h3>5. String Handling</h3>
+                <p>Strings can use single or double quotes. Double-quoted strings can interpolate variables.</p>
+                <div class="answer-box">
+                    <h4>Common String Operations:</h4>
+                    <pre><code>$name = "Riya";
+$message = "Hello, $name";
+$text = "  Learn PHP  ";
+
+echo strlen($text);                       // string length in bytes
+echo trim($text);                        // remove surrounding whitespace
+echo strtoupper($text);                  // uppercase
+echo substr($text, 0, 5);                // part of a string
+echo str_replace("PHP", "HTML", $text); // replace text
+echo strpos($text, "PHP");               // position, or false if not found
+echo sprintf("Score: %d%%", 90);         // formatted string</code></pre>
+                </div>
+                <br>
+                <p>Useful functions: <code>strlen()</code>, <code>trim()</code>, <code>strtolower()</code>, <code>strtoupper()</code>, <code>substr()</code>, <code>strpos()</code>, <code>str_replace()</code>, <code>explode()</code>, <code>implode()</code>, <code>sprintf()</code>, and <code>htmlspecialchars()</code>.</p>
+                <p><strong>Gotcha:</strong> <code>strpos()</code> can return <code>0</code> when a match is at the start. Check it with <code>!== false</code>, not just <code>if (strpos(...))</code>.</p>
+                <p><strong>Output safety:</strong> When displaying user-supplied text inside HTML, use <code>htmlspecialchars()</code> to prevent HTML injection.</p>
+            </div>
+
+            <!-- Unit III -->
+            <div class="question-section" id="unit3">
+                <h2>Unit III: Handling HTML Forms with PHP</h2>
+                <br>
+                <h3>1. Creating and Submitting a Form</h3>
+                <p>The <code>action</code> attribute specifies the receiving script. The <code>method</code> attribute specifies how data is sent. Each input needs a <code>name</code> so PHP can access its submitted value.</p>
+                <div class="answer-box">
+                    <h4>HTML Form Structure:</h4>
+                    <pre><code>&lt;form action="process.php" method="post"&gt;
+  &lt;label&gt;Name: &lt;input type="text" name="name" required&gt;&lt;/label&gt;
+  &lt;label&gt;Email: &lt;input type="email" name="email" required&gt;&lt;/label&gt;
+  &lt;button type="submit"&gt;Register&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <br>
+
+                <h3>2. GET vs POST</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>GET</th>
+                            <th>POST</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data is included in the URL query string.</td>
+                            <td>Data is sent in the request body.</td>
+                        </tr>
+                        <tr>
+                            <td>Useful for searches and shareable/filterable URLs.</td>
+                            <td>Commonly used when submitting forms or changing server data.</td>
+                        </tr>
+                        <tr>
+                            <td>Data may appear in browser history and logs.</td>
+                            <td>Values are not normally shown in the URL, but POST alone does <strong>not</strong> encrypt them.</td>
+                        </tr>
+                        <tr>
+                            <td>Access values with <code>$_GET</code>.</td>
+                            <td>Access values with <code>$_POST</code>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <p>Use <strong>HTTPS</strong> to protect data in transit. Never send passwords using GET.</p>
+                <br>
+
+                <h3>3. Server-Side Validation</h3>
+                <p>Browser validation such as <code>required</code> improves usability, but users can bypass it. Always validate submitted data again on the server.</p>
+                <div class="answer-box">
+                    <h4>Student registration example (<code>register.php</code>):</h4>
+                    <pre><code>&lt;?php
+$errors = [];
+$name = $email = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $name = trim($_POST["name"] ?? "");
+    $email = trim($_POST["email"] ?? "");
+    $age = filter_var($_POST["age"] ?? "", FILTER_VALIDATE_INT);
+
+    if ($name === "") $errors[] = "Name is required.";
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Enter a valid email.";
+    }
+    if ($age === false || $age === null || $age &lt; 16) {
+        $errors[] = "Enter a valid age (16 or above).";
+    }
+}
+?&gt;
+&lt;form method="post" action="register.php"&gt;
+  &lt;label&gt;Name: &lt;input name="name" required&gt;&lt;/label&gt;
+  &lt;label&gt;Email: &lt;input type="email" name="email" required&gt;&lt;/label&gt;
+  &lt;label&gt;Age: &lt;input type="number" name="age" min="16" required&gt;&lt;/label&gt;
+  &lt;button type="submit"&gt;Register&lt;/button&gt;
+&lt;/form&gt;
+&lt;?php foreach ($errors as $error): ?&gt;
+  &lt;p&gt;&lt;?= htmlspecialchars($error) ?&gt;&lt;/p&gt;
+&lt;?php endforeach; ?&gt;</code></pre>
+                </div>
+                <br>
+                <p>This example validates input. A complete registration system should also store valid records in a database and handle duplicate email addresses.</p>
+                <br>
+
+                <h3>4. Login Form and Validation</h3>
+                <p>A login form usually asks for an email/username and password. Validate that fields are present on the server, retrieve the account safely from the database, and verify a <strong>stored password hash</strong>.</p>
+                <div class="answer-box">
+                    <h4>HTML Login Form:</h4>
+                    <pre><code>&lt;form action="login.php" method="post"&gt;
+  &lt;label&gt;Email: &lt;input type="email" name="email" required&gt;&lt;/label&gt;
+  &lt;label&gt;Password: &lt;input type="password" name="password" required&gt;&lt;/label&gt;
+  &lt;button type="submit"&gt;Log in&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <br>
+                <p>After creating a PDO connection (<code>$pdo</code>, shown in Unit IV), the essential server-side check is:</p>
+                <div class="answer-box">
+                    <h4>Secure Password Verification:</h4>
+                    <pre><code>$email = trim($_POST["email"] ?? "");
+$password = $_POST["password"] ?? "";
+
+$stmt = $pdo-&gt;prepare(
+    "SELECT id, password_hash FROM users WHERE email = ?"
+);
+$stmt-&gt;execute([$email]);
+$user = $stmt-&gt;fetch(PDO::FETCH_ASSOC);
+
+if ($user &amp;&amp; password_verify($password, $user["password_hash"])) {
+    // Login is valid: start the application's authenticated session.
+} else {
+    $error = "Invalid email or password.";
+}</code></pre>
+                </div>
+                <br>
+                <p>When creating accounts, store passwords using <code>password_hash($password, PASSWORD_DEFAULT)</code>. <strong>Never store plain-text passwords</strong> or place user input directly into an SQL query.</p>
+            </div>
+
+            <!-- Unit IV -->
+            <div class="question-section" id="unit4">
+                <h2>Unit IV: Database Connectivity with MySQL</h2>
+                <br>
+                <h3>1. Database and Table Creation</h3>
+                <p>A <strong>database</strong> holds related data. A <strong>table</strong> stores records in rows and fields in columns.</p>
+                <div class="answer-box">
+                    <h4>SQL Database and Table Schema:</h4>
+                    <pre><code>CREATE DATABASE college;
+USE college;
+
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    age INT NOT NULL
+);</code></pre>
+                </div>
+                <br>
+
+                <h3>2. Connecting PHP to MySQL</h3>
+                <p>PDO provides a consistent interface for database access. Replace the sample username and password with an account configured for your environment.</p>
+                <div class="answer-box">
+                    <h4>PDO Connection:</h4>
+                    <pre><code>&lt;?php
+$pdo = new PDO(
+    "mysql:host=localhost;dbname=college;charset=utf8mb4",
+    "app_user",
+    "your_password",
+    [PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION]
+);
+?&gt;</code></pre>
+                </div>
+                <br>
+                <p>Keep database credentials out of public source code in real deployments, and give the application account only the permissions it needs.</p>
+                <br>
+
+                <h3>3. Insert, Retrieve, Update, and Delete</h3>
+                <p>Use <strong>prepared statements</strong> for queries that include user input.</p>
+                <div class="answer-box">
+                    <h4>CRUD Operations with Prepared Statements:</h4>
+                    <pre><code>// INSERT
+$stmt = $pdo-&gt;prepare(
+    "INSERT INTO students (name, email, age) VALUES (?, ?, ?)"
+);
+$stmt-&gt;execute(["Riya", "riya@example.com", 20]);
+
+// SELECT
+$stmt = $pdo-&gt;query("SELECT id, name, email, age FROM students");
+$students = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
+foreach ($students as $student) {
+    echo htmlspecialchars($student["name"]);
+}
+
+// UPDATE
+$stmt = $pdo-&gt;prepare("UPDATE students SET age = ? WHERE id = ?");
+$stmt-&gt;execute([21, 1]);
+
+// DELETE
+$stmt = $pdo-&gt;prepare("DELETE FROM students WHERE id = ?");
+$stmt-&gt;execute([1]);</code></pre>
+                </div>
+                <br>
+                <ul>
+                    <li><code>INSERT</code> adds a record.</li>
+                    <li><code>SELECT</code> retrieves records.</li>
+                    <li><code>UPDATE</code> changes existing records.</li>
+                    <li><code>DELETE</code> removes records.</li>
+                </ul>
+                <br>
+                <img src="../assets/php_mysql_flow.jpg" alt="PHP and MySQL request flow">
+            </div>
+
+            <!-- Quick Revision -->
+            <div class="question-section" id="quick-revision">
+                <h2>Quick Revision</h2>
+                <br>
+                <ul>
+                    <li><strong>HTML</strong> structures a page; <strong>JavaScript</strong> adds browser-side behaviour.</li>
+                    <li><strong>PHP</strong> runs on the server and can generate HTML or communicate with a database.</li>
+                    <li><strong>DNS</strong> maps domain names to IP addresses; <strong>HTTP/HTTPS</strong> carries web requests and responses.</li>
+                    <li><strong>GET</strong> reads data through a URL; <strong>POST</strong> sends form data in the request body.</li>
+                    <li>Validate all input on the server, escape output for HTML, use HTTPS, and use prepared SQL statements.</li>
+                    <li>Store passwords as hashes and verify them with <code>password_verify()</code>.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>DAISY DHIMAN BCA 4205/25 SEC A</p>
+    </footer>
+</body>
+</html>

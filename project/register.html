@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register - Online Registration System</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <nav class="simple-nav"><a href="index.php">Online Registration System</a></nav>
+    <main class="container">
+        <section class="hero-section">
+            <h1>Registration Form</h1>
+            <p class="muted">Enter your details below.</p>
+            <form action="register.php" method="POST" enctype="multipart/form-data" class="simple-form form-grid">
+                <label>Name<input type="text" name="name" maxlength="100" required></label>
+                <label>Mobile number<input type="tel" name="mobile" required></label>
+                <label>Password<input type="password" name="password" required></label>
+                <label>Confirm password<input type="password" name="cpassword" required></label>
+                <label class="full-row">Address<input type="text" name="address" required></label>
+                <label>Upload image<input type="file" name="photo" accept="image/*"></label>
+                <label>Role<select name="role" required><option value="1">Admin</option><option value="2" selected>User</option></select></label>
+                <fieldset><legend>Gender</legend>
+                    <label class="inline"><input type="radio" name="gender" value="Female" required> Female</label>
+                    <label class="inline"><input type="radio" name="gender" value="Male"> Male</label>
+                    <label class="inline"><input type="radio" name="gender" value="Other"> Other</label>
+                </fieldset>
+                <fieldset><legend>Class</legend>
+                    <label class="inline"><input type="radio" name="class" value="BCA" required> BCA</label>
+                    <label class="inline"><input type="radio" name="class" value="BBA"> BBA</label>
+                    <label class="inline"><input type="radio" name="class" value="MCA"> MCA</label>
+                </fieldset>
+                <button type="submit" class="main-button full-row">Register</button>
+            </form>
+            <p class="below-form">Already registered? <a href="index.php">Login here</a></p>
+        </section>
+    </main>
+    <footer>Online Registration System</footer>
+</body>
+</html>

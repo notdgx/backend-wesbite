@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FILE HANDLING - BCA 4205/25 Daisy Dhiman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="simple-nav">
+        <div class="nav-logo"><a href="../index.html">Backend Web Development</a></div>
+    </nav>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">&larr; Back to Home</a>
+
+        <div class="questions-page">
+            <h1>FILE HANDLING</h1>
+
+            <div class="question-index">
+                <h2>Questions List</h2>
+                <ul>
+                    <li><a href="#q1">1. Write text to a file using file_put_contents().</a></li>
+                    <li><a href="#q2">2. Read the contents of a file.</a></li>
+                    <li><a href="#q3">3. Append text to a file.</a></li>
+                    <li><a href="#q4">4. Check whether a file exists.</a></li>
+                    <li><a href="#q5">5. Get a file&#x27;s size in bytes.</a></li>
+                    <li><a href="#q6">6. Open a file, write to it, and close it.</a></li>
+                    <li><a href="#q7">7. Read a file line by line.</a></li>
+                    <li><a href="#q8">8. Count the number of lines in a text file.</a></li>
+                    <li><a href="#q9">9. Delete a file using unlink().</a></li>
+                    <li><a href="#q10">10. Handle a missing file without displaying a warning.</a></li>
+                    <li><a href="#q11">11. Read the first line with fgets().</a></li>
+                    <li><a href="#q12">12. Upload a file safely at a basic level.</a></li>
+                </ul>
+            </div>
+
+            <div class="question-section" id="q1">
+                <h3>1. Write text to a file using file_put_contents().</h3>
+                <div class="answer-box">
+                    <h4>Answer 1:</h4>
+                    <pre><code>&lt;?php
+$bytes = file_put_contents(&quot;sample.txt&quot;, &quot;Hello PHP&quot;);
+echo $bytes;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 1:</h4>
+                    <pre><code>9</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Creates or overwrites sample.txt in the current working directory.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q2">
+                <h3>2. Read the contents of a file.</h3>
+                <div class="answer-box">
+                    <h4>Answer 2:</h4>
+                    <pre><code>&lt;?php
+file_put_contents(&quot;sample.txt&quot;, &quot;Hello PHP&quot;);
+echo file_get_contents(&quot;sample.txt&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 2:</h4>
+                    <pre><code>Hello PHP</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q3">
+                <h3>3. Append text to a file.</h3>
+                <div class="answer-box">
+                    <h4>Answer 3:</h4>
+                    <pre><code>&lt;?php
+file_put_contents(&quot;log.txt&quot;, &quot;Start\n&quot;);
+file_put_contents(&quot;log.txt&quot;, &quot;Next\n&quot;, FILE_APPEND);
+echo file_get_contents(&quot;log.txt&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 3:</h4>
+                    <pre><code>Start
+Next</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q4">
+                <h3>4. Check whether a file exists.</h3>
+                <div class="answer-box">
+                    <h4>Answer 4:</h4>
+                    <pre><code>&lt;?php
+file_put_contents(&quot;report.txt&quot;, &quot;Ready&quot;);
+echo file_exists(&quot;report.txt&quot;) ? &quot;File exists&quot; : &quot;Missing&quot;;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 4:</h4>
+                    <pre><code>File exists</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q5">
+                <h3>5. Get a file&#x27;s size in bytes.</h3>
+                <div class="answer-box">
+                    <h4>Answer 5:</h4>
+                    <pre><code>&lt;?php
+file_put_contents(&quot;sample.txt&quot;, &quot;ABC&quot;);
+echo filesize(&quot;sample.txt&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 5:</h4>
+                    <pre><code>3</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q6">
+                <h3>6. Open a file, write to it, and close it.</h3>
+                <div class="answer-box">
+                    <h4>Answer 6:</h4>
+                    <pre><code>&lt;?php
+$file = fopen(&quot;sample.txt&quot;, &quot;w&quot;);
+fwrite($file, &quot;PHP file&quot;);
+fclose($file);
+echo file_get_contents(&quot;sample.txt&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 6:</h4>
+                    <pre><code>PHP file</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q7">
+                <h3>7. Read a file line by line.</h3>
+                <div class="answer-box">
+                    <h4>Answer 7:</h4>
+                    <pre><code>&lt;?php
+file_put_contents(&quot;lines.txt&quot;, &quot;Red\nGreen\nBlue\n&quot;);
+$file = fopen(&quot;lines.txt&quot;, &quot;r&quot;);
+while (($line = fgets($file)) !== false) {
+    echo trim($line) . &quot; &quot;;
+}
+fclose($file);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 7:</h4>
+                    <pre><code>Red Green Blue</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q8">
+                <h3>8. Count the number of lines in a text file.</h3>
+                <div class="answer-box">
+                    <h4>Answer 8:</h4>
+                    <pre><code>&lt;?php
+file_put_contents(&quot;lines.txt&quot;, &quot;one\ntwo\nthree\n&quot;);
+$lines = file(&quot;lines.txt&quot;, FILE_IGNORE_NEW_LINES);
+echo count($lines);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 8:</h4>
+                    <pre><code>3</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q9">
+                <h3>9. Delete a file using unlink().</h3>
+                <div class="answer-box">
+                    <h4>Answer 9:</h4>
+                    <pre><code>&lt;?php
+file_put_contents(&quot;temporary.txt&quot;, &quot;Remove me&quot;);
+if (unlink(&quot;temporary.txt&quot;)) {
+    echo &quot;Deleted&quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 9:</h4>
+                    <pre><code>Deleted</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Only delete files that the application is authorized to remove.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q10">
+                <h3>10. Handle a missing file without displaying a warning.</h3>
+                <div class="answer-box">
+                    <h4>Answer 10:</h4>
+                    <pre><code>&lt;?php
+$path = &quot;missing.txt&quot;;
+if (is_readable($path)) {
+    echo file_get_contents($path);
+} else {
+    echo &quot;File unavailable&quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 10:</h4>
+                    <pre><code>File unavailable</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q11">
+                <h3>11. Read the first line with fgets().</h3>
+                <div class="answer-box">
+                    <h4>Answer 11:</h4>
+                    <pre><code>&lt;?php
+file_put_contents(&quot;sample.txt&quot;, &quot;First line\nSecond line\n&quot;);
+$file = fopen(&quot;sample.txt&quot;, &quot;r&quot;);
+echo trim(fgets($file));
+fclose($file);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 11:</h4>
+                    <pre><code>First line</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q12">
+                <h3>12. Upload a file safely at a basic level.</h3>
+                <div class="answer-box">
+                    <h4>Answer 12:</h4>
+                    <pre><code>&lt;?php
+if ($_SERVER[&quot;REQUEST_METHOD&quot;] === &quot;POST&quot; &amp;&amp; isset($_FILES[&quot;document&quot;])) {
+    $file = $_FILES[&quot;document&quot;];
+    $allowed = [&quot;pdf&quot;, &quot;txt&quot;];
+    $extension = strtolower(pathinfo($file[&quot;name&quot;], PATHINFO_EXTENSION));
+    if ($file[&quot;error&quot;] !== UPLOAD_ERR_OK) {
+        echo &quot;Upload failed&quot;;
+    } elseif (!in_array($extension, $allowed, true)) {
+        echo &quot;Only PDF or TXT files allowed&quot;;
+    } else {
+        $target = __DIR__ . &quot;/uploads/&quot; . uniqid(&quot;upload_&quot;, true) . &quot;.&quot; . $extension;
+        if (move_uploaded_file($file[&quot;tmp_name&quot;], $target)) {
+            echo &quot;Upload complete&quot;;
+        } else {
+            echo &quot;Could not save file&quot;;
+        }
+    }
+}
+?&gt;
+&lt;form method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+  &lt;input type=&quot;file&quot; name=&quot;document&quot; required&gt;
+  &lt;button&gt;Upload&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 12:</h4>
+                    <pre><code>For an allowed upload saved successfully: Upload complete</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Create the uploads directory and grant the web server write permission. Production upload handlers should also validate MIME/content, enforce size limits, and prevent execution of uploaded files.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>DAISY DHIMAN BCA 4205/25 SEC A</p>
+    </footer>
+</body>
+</html>

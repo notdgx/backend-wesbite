@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DECISION-MAKING STATEMENTS - BCA 4205/25 Daisy Dhiman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="simple-nav">
+        <div class="nav-logo"><a href="../index.html">Backend Web Development</a></div>
+    </nav>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">&larr; Back to Home</a>
+
+        <div class="questions-page">
+            <h1>DECISION-MAKING STATEMENTS</h1>
+
+            <div class="question-index">
+                <h2>Questions List</h2>
+                <ul>
+                    <li><a href="#q1">1. Check whether a number is positive.</a></li>
+                    <li><a href="#q2">2. Check whether a number is even or odd.</a></li>
+                    <li><a href="#q3">3. Find whether a number is positive, negative, or zero.</a></li>
+                    <li><a href="#q4">4. Assign a grade using an if-elseif ladder.</a></li>
+                    <li><a href="#q5">5. Check voting eligibility using a nested condition.</a></li>
+                    <li><a href="#q6">6. Select a message using switch.</a></li>
+                    <li><a href="#q7">7. Check whether a character is a vowel.</a></li>
+                    <li><a href="#q8">8. Find the largest of two numbers.</a></li>
+                    <li><a href="#q9">9. Find the largest of three numbers.</a></li>
+                    <li><a href="#q10">10. Check whether a year is a leap year.</a></li>
+                    <li><a href="#q11">11. Use a condition to print Pass or Fail.</a></li>
+                    <li><a href="#q12">12. Check a username and password value using logical AND.</a></li>
+                </ul>
+            </div>
+
+            <div class="question-section" id="q1">
+                <h3>1. Check whether a number is positive.</h3>
+                <div class="answer-box">
+                    <h4>Answer 1:</h4>
+                    <pre><code>&lt;?php
+$n = 8;
+if ($n &gt; 0) {
+    echo &quot;Positive&quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 1:</h4>
+                    <pre><code>Positive</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q2">
+                <h3>2. Check whether a number is even or odd.</h3>
+                <div class="answer-box">
+                    <h4>Answer 2:</h4>
+                    <pre><code>&lt;?php
+$n = 7;
+if ($n % 2 == 0) {
+    echo &quot;Even&quot;;
+} else {
+    echo &quot;Odd&quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 2:</h4>
+                    <pre><code>Odd</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q3">
+                <h3>3. Find whether a number is positive, negative, or zero.</h3>
+                <div class="answer-box">
+                    <h4>Answer 3:</h4>
+                    <pre><code>&lt;?php
+$n = 0;
+if ($n &gt; 0) {
+    echo &quot;Positive&quot;;
+} elseif ($n &lt; 0) {
+    echo &quot;Negative&quot;;
+} else {
+    echo &quot;Zero&quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 3:</h4>
+                    <pre><code>Zero</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q4">
+                <h3>4. Assign a grade using an if-elseif ladder.</h3>
+                <div class="answer-box">
+                    <h4>Answer 4:</h4>
+                    <pre><code>&lt;?php
+$marks = 76;
+if ($marks &gt;= 90) {
+    echo &quot;A&quot;;
+} elseif ($marks &gt;= 75) {
+    echo &quot;B&quot;;
+} elseif ($marks &gt;= 50) {
+    echo &quot;C&quot;;
+} else {
+    echo &quot;Fail&quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 4:</h4>
+                    <pre><code>B</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q5">
+                <h3>5. Check voting eligibility using a nested condition.</h3>
+                <div class="answer-box">
+                    <h4>Answer 5:</h4>
+                    <pre><code>&lt;?php
+$age = 20;
+$citizen = true;
+if ($age &gt;= 18) {
+    if ($citizen) {
+        echo &quot;Eligible&quot;;
+    } else {
+        echo &quot;Citizenship required&quot;;
+    }
+} else {
+    echo &quot;Too young&quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 5:</h4>
+                    <pre><code>Eligible</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q6">
+                <h3>6. Select a message using switch.</h3>
+                <div class="answer-box">
+                    <h4>Answer 6:</h4>
+                    <pre><code>&lt;?php
+$day = 3;
+switch ($day) {
+    case 1: echo &quot;Monday&quot;; break;
+    case 2: echo &quot;Tuesday&quot;; break;
+    case 3: echo &quot;Wednesday&quot;; break;
+    default: echo &quot;Unknown day&quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 6:</h4>
+                    <pre><code>Wednesday</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q7">
+                <h3>7. Check whether a character is a vowel.</h3>
+                <div class="answer-box">
+                    <h4>Answer 7:</h4>
+                    <pre><code>&lt;?php
+$ch = &quot;e&quot;;
+switch ($ch) {
+    case &quot;a&quot;:
+    case &quot;e&quot;:
+    case &quot;i&quot;:
+    case &quot;o&quot;:
+    case &quot;u&quot;: echo &quot;Vowel&quot;; break;
+    default: echo &quot;Consonant&quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 7:</h4>
+                    <pre><code>Vowel</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q8">
+                <h3>8. Find the largest of two numbers.</h3>
+                <div class="answer-box">
+                    <h4>Answer 8:</h4>
+                    <pre><code>&lt;?php
+$a = 18;
+$b = 11;
+if ($a &gt; $b) {
+    echo $a;
+} else {
+    echo $b;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 8:</h4>
+                    <pre><code>18</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q9">
+                <h3>9. Find the largest of three numbers.</h3>
+                <div class="answer-box">
+                    <h4>Answer 9:</h4>
+                    <pre><code>&lt;?php
+$a = 4; $b = 19; $c = 12;
+if ($a &gt;= $b &amp;&amp; $a &gt;= $c) {
+    echo $a;
+} elseif ($b &gt;= $a &amp;&amp; $b &gt;= $c) {
+    echo $b;
+} else {
+    echo $c;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 9:</h4>
+                    <pre><code>19</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q10">
+                <h3>10. Check whether a year is a leap year.</h3>
+                <div class="answer-box">
+                    <h4>Answer 10:</h4>
+                    <pre><code>&lt;?php
+$year = 2024;
+if (($year % 400 == 0) || ($year % 4 == 0 &amp;&amp; $year % 100 != 0)) {
+    echo &quot;Leap year&quot;;
+} else {
+    echo &quot;Not a leap year&quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 10:</h4>
+                    <pre><code>Leap year</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q11">
+                <h3>11. Use a condition to print Pass or Fail.</h3>
+                <div class="answer-box">
+                    <h4>Answer 11:</h4>
+                    <pre><code>&lt;?php
+$marks = 39;
+echo ($marks &gt;= 40) ? &quot;Pass&quot; : &quot;Fail&quot;;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 11:</h4>
+                    <pre><code>Fail</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q12">
+                <h3>12. Check a username and password value using logical AND.</h3>
+                <div class="answer-box">
+                    <h4>Answer 12:</h4>
+                    <pre><code>&lt;?php
+$username = &quot;admin&quot;;
+$password = &quot;php123&quot;;
+if ($username === &quot;admin&quot; &amp;&amp; $password === &quot;php123&quot;) {
+    echo &quot;Details match&quot;;
+} else {
+    echo &quot;Invalid details&quot;;
+}
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 12:</h4>
+                    <pre><code>Details match</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>This demonstrates conditions only; real login systems should verify password hashes stored in a database.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>DAISY DHIMAN BCA 4205/25 SEC A</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP FUNCTIONS - BCA 4205/25 Daisy Dhiman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="simple-nav">
+        <div class="nav-logo"><a href="../index.html">Backend Web Development</a></div>
+    </nav>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">&larr; Back to Home</a>
+
+        <div class="questions-page">
+            <h1>PHP FUNCTIONS</h1>
+
+            <div class="question-index">
+                <h2>Questions List</h2>
+                <ul>
+                    <li><a href="#q1">1. Define and call a function.</a></li>
+                    <li><a href="#q2">2. Pass an argument to a function.</a></li>
+                    <li><a href="#q3">3. Return a value from a function.</a></li>
+                    <li><a href="#q4">4. Use a default parameter value.</a></li>
+                    <li><a href="#q5">5. Return the square of a number.</a></li>
+                    <li><a href="#q6">6. Use a type declaration for the return value.</a></li>
+                    <li><a href="#q7">7. Demonstrate a local variable.</a></li>
+                    <li><a href="#q8">8. Pass a variable by reference.</a></li>
+                    <li><a href="#q9">9. Use a function to find the maximum of two numbers.</a></li>
+                    <li><a href="#q10">10. Calculate factorial recursively.</a></li>
+                    <li><a href="#q11">11. Use an anonymous function.</a></li>
+                    <li><a href="#q12">12. Use a built-in function inside a custom function.</a></li>
+                </ul>
+            </div>
+
+            <div class="question-section" id="q1">
+                <h3>1. Define and call a function.</h3>
+                <div class="answer-box">
+                    <h4>Answer 1:</h4>
+                    <pre><code>&lt;?php
+function greet() {
+    echo &quot;Hello&quot;;
+}
+greet();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 1:</h4>
+                    <pre><code>Hello</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q2">
+                <h3>2. Pass an argument to a function.</h3>
+                <div class="answer-box">
+                    <h4>Answer 2:</h4>
+                    <pre><code>&lt;?php
+function greetUser($name) {
+    echo &quot;Hello, &quot; . $name;
+}
+greetUser(&quot;Asha&quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 2:</h4>
+                    <pre><code>Hello, Asha</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q3">
+                <h3>3. Return a value from a function.</h3>
+                <div class="answer-box">
+                    <h4>Answer 3:</h4>
+                    <pre><code>&lt;?php
+function add($a, $b) {
+    return $a + $b;
+}
+echo add(4, 7);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 3:</h4>
+                    <pre><code>11</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q4">
+                <h3>4. Use a default parameter value.</h3>
+                <div class="answer-box">
+                    <h4>Answer 4:</h4>
+                    <pre><code>&lt;?php
+function welcome($name = &quot;Guest&quot;) {
+    echo &quot;Welcome &quot; . $name;
+}
+welcome();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 4:</h4>
+                    <pre><code>Welcome Guest</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q5">
+                <h3>5. Return the square of a number.</h3>
+                <div class="answer-box">
+                    <h4>Answer 5:</h4>
+                    <pre><code>&lt;?php
+function square($n) {
+    return $n * $n;
+}
+echo square(6);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 5:</h4>
+                    <pre><code>36</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q6">
+                <h3>6. Use a type declaration for the return value.</h3>
+                <div class="answer-box">
+                    <h4>Answer 6:</h4>
+                    <pre><code>&lt;?php
+function multiply(int $a, int $b): int {
+    return $a * $b;
+}
+echo multiply(3, 5);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 6:</h4>
+                    <pre><code>15</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Note:</h4>
+                    <p>Requires a modern PHP version supporting scalar and return type declarations.</p>
+                </div>
+            </div>
+
+            <div class="question-section" id="q7">
+                <h3>7. Demonstrate a local variable.</h3>
+                <div class="answer-box">
+                    <h4>Answer 7:</h4>
+                    <pre><code>&lt;?php
+function showNumber() {
+    $number = 10;
+    echo $number;
+}
+showNumber();
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 7:</h4>
+                    <pre><code>10</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q8">
+                <h3>8. Pass a variable by reference.</h3>
+                <div class="answer-box">
+                    <h4>Answer 8:</h4>
+                    <pre><code>&lt;?php
+function increase(&amp;$n) {
+    $n++;
+}
+$value = 4;
+increase($value);
+echo $value;
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 8:</h4>
+                    <pre><code>5</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q9">
+                <h3>9. Use a function to find the maximum of two numbers.</h3>
+                <div class="answer-box">
+                    <h4>Answer 9:</h4>
+                    <pre><code>&lt;?php
+function larger($a, $b) {
+    return ($a &gt; $b) ? $a : $b;
+}
+echo larger(7, 12);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 9:</h4>
+                    <pre><code>12</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q10">
+                <h3>10. Calculate factorial recursively.</h3>
+                <div class="answer-box">
+                    <h4>Answer 10:</h4>
+                    <pre><code>&lt;?php
+function factorial($n) {
+    if ($n &lt;= 1) return 1;
+    return $n * factorial($n - 1);
+}
+echo factorial(5);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 10:</h4>
+                    <pre><code>120</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q11">
+                <h3>11. Use an anonymous function.</h3>
+                <div class="answer-box">
+                    <h4>Answer 11:</h4>
+                    <pre><code>&lt;?php
+$double = function ($n) {
+    return $n * 2;
+};
+echo $double(9);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 11:</h4>
+                    <pre><code>18</code></pre>
+                </div>
+            </div>
+
+            <div class="question-section" id="q12">
+                <h3>12. Use a built-in function inside a custom function.</h3>
+                <div class="answer-box">
+                    <h4>Answer 12:</h4>
+                    <pre><code>&lt;?php
+function cleanName($name) {
+    return strtoupper(trim($name));
+}
+echo cleanName(&quot;  mira  &quot;);
+?&gt;</code></pre>
+                </div>
+                <div class="answer-box">
+                    <h4>Output 12:</h4>
+                    <pre><code>MIRA</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>DAISY DHIMAN BCA 4205/25 SEC A</p>
+    </footer>
+</body>
+</html>
