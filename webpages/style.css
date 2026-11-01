@@ -47,10 +47,10 @@ body {
 }
 
 .hero-image {
-    background-image: url("../assets/hero.jpg");
     width: 100%;
     height: auto;
     margin-bottom: 1rem;
+    border-radius: 6px;
 }
 
 .topics-grid {
